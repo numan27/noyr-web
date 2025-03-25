@@ -20,7 +20,13 @@ type Product = {
   sizes?: string[];
 };
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function ProductDetail({ params }: PageProps) {
   const product = products.find((p) => {
     if (typeof p.id === "number") {
       return p.id === Number(params.id);
@@ -38,7 +44,6 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
       <div className={classNames(styles.cardContainer, "mx-auto px-4 py-12")}>
         <div className={classNames(styles.customContainer)}>
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Product Image */}
             <div className="relative aspect-square">
               <Image
                 src={product.image}
@@ -48,7 +53,6 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               />
             </div>
 
-            {/* Product Info - Dark Text Styling */}
             <div className="space-y-6 text-gray-900">
               {product.isNew && (
                 <span className="inline-block px-3 py-1 text-xs font-medium bg-gray-900 text-white rounded-full">
@@ -73,7 +77,6 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
                 </p>
               )}
 
-              {/* Size Selection */}
               <div className="space-y-2">
                 <h3 className="font-medium text-gray-900">Select Size</h3>
                 <div className="flex flex-wrap gap-2">
