@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { use } from "react"; // Required for handling Promises
 import Image, { StaticImageData } from "next/image";
 import { products } from "utils/constants";
 import { notFound } from "next/navigation";
@@ -20,18 +21,20 @@ type Product = {
   sizes?: string[];
 };
 
+// Updated to match Next.js 15+ async params
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default function ProductDetail({ params }: PageProps) {
+  // Resolve the Promise using `use()`
+  const { id } = use(params);
+
   const product = products.find((p) => {
     if (typeof p.id === "number") {
-      return p.id === Number(params.id);
+      return p.id === Number(id);
     }
-    return p.id === params.id;
+    return p.id === id;
   });
 
   if (!product) {
