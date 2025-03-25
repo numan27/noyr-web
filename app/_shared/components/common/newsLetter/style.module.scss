@@ -1,0 +1,16 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.newsLetter {
+  background-color: $WHITE;
+  border-radius: 8px !important;
+  @include RP(("height": 68,
+      "padding-left": 12,
+      "padding-right": 12,
+    ), 1);
+  max-height: 68px !important;
+
+  .subscribeButton {
+    height: 100% !important;
+  }
+}

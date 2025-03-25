@@ -1,0 +1,158 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.pageWrapper {
+  @include RP(("padding-top": 40,
+      "padding-bottom": 50,
+    ));
+
+  .heroSection {
+    h2 {
+      text-transform: uppercase;
+    }
+
+    p {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    @media screen and (max-width: 640px) {
+      text-align: center !important;
+    }
+
+    @include RP(("padding-top": 50,
+        "padding-bottom": 50,
+      ));
+
+    h6 {
+      font-weight: 400 !important;
+      @include RP(("font-size": 18,
+          "margin-bottom": 15));
+    }
+
+  }
+
+  .contentWrapper {
+    @include RP(("padding-top": 40,
+        "padding-bottom": 50,
+      ));
+
+    .purpose {
+      max-width: 80% !important;
+      margin: auto;
+      position: relative;
+      @include RP(("margin-bottom": 40,
+          "padding-top": 6,
+          "padding-bottom": 6,
+        ));
+
+      @media screen and (max-width: 450px) {
+        max-width: 100% !important;
+      }
+
+      @media screen and (min-width: 450px) {
+        &::before {
+          content: "";
+          width: 14px;
+          height: 100%;
+          background: $PRIMARY;
+          position: absolute;
+          left: -50px;
+          top: 0;
+          bottom: 0;
+        }
+      }
+
+      p {
+        color: $WHITE !important;
+        @include RP(("font-size": 19,
+            "margin-top": 15,
+          ), 1);
+        text-align: justify;
+
+        span {
+          color: $PRIMARY;
+        }
+      }
+    }
+
+    .content {
+      .item {
+        @include RP(("margin-top": 15,
+            "margin-bottom": 15,
+          ));
+
+        p {
+          text-align: left;
+
+          span {
+            color: $WHITE !important;
+            font-weight: 600;
+            @include RP(("font-size": 18, ), 1);
+          }
+        }
+      }
+
+      ul {
+        @include RP(("padding-left": 30), 1);
+
+        li {
+          list-style: disc !important;
+          @include RP(("margin-bottom": 8), 1);
+        }
+      }
+    }
+
+    h4 {
+      text-transform: uppercase;
+      @include RP(("margin-bottom": 15,
+        ), 1);
+    }
+
+    hr {
+      @include RP(("margin-top": 20,
+          "margin-bottom": 20,
+        ), 1);
+    }
+
+    h6 {
+      text-decoration: underline;
+      @include RP(("font-size": 20,
+          "margin-top": 10,
+          "margin-bottom": 15,
+        ), 1);
+      font-style: italic;
+    }
+
+    p {
+      @include RP(("font-size": 16,
+          // "margin-bottom": 15,
+        ), 1);
+      color: rgba(255, 255, 255, 0.85) !important;
+      text-align: justify;
+
+      a {
+        color: $PRIMARY;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 0%;
+          position: absolute;
+          bottom: 0;
+          height: 1px;
+          background-color: transparent;
+          transition: width 0.3s ease;
+        }
+
+        &:hover {
+          &::before {
+            width: 100%;
+            background: $PRIMARY;
+          }
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,14 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="PRIMARY_GRADIENT" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EC1E24" />
+      <stop offset="100%" stop-color="#902880" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M7 8H17M7 12H17M7 16H17"
+    stroke="url(#PRIMARY_GRADIENT)"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>

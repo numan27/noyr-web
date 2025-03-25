@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+self["webpackHotUpdate_N_E"]("middleware",{
+
+/***/ "(middleware)/./app/_shared/routes/constants.ts":
+/*!*****************************************!*\
+  !*** ./app/_shared/routes/constants.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   routeConstant: () => (/* binding */ routeConstant)\n/* harmony export */ });\nconst routeConstant = {\n    // Public Pages\n    home: {\n        path: \"/\",\n        title: \"Home\"\n    },\n    men: {\n        path: \"/collections/men\",\n        title: \"Men\"\n    },\n    women: {\n        path: \"/collections/women\",\n        title: \"Women\"\n    },\n    newArrivals: {\n        path: \"/collections/newArrivals\",\n        title: \"New Arrivals\"\n    },\n    collections: {\n        path: \"/collections\",\n        title: \"Collections\"\n    },\n    productDetail: {\n        path: \"/collections/:id\",\n        title: \"Collections\"\n    },\n    sales: {\n        path: \"/collections/sales\",\n        title: \"Sales\"\n    }\n};\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKG1pZGRsZXdhcmUpLy4vYXBwL19zaGFyZWQvcm91dGVzL2NvbnN0YW50cy50cyIsIm1hcHBpbmdzIjoiOzs7O0FBQUEsTUFBTUEsZ0JBQWdCO0lBQ3BCLGVBQWU7SUFFZkMsTUFBTTtRQUNKQyxNQUFNO1FBQ05DLE9BQU87SUFDVDtJQUNBQyxLQUFLO1FBQ0hGLE1BQU07UUFDTkMsT0FBTztJQUNUO0lBQ0FFLE9BQU87UUFDTEgsTUFBTTtRQUNOQyxPQUFPO0lBQ1Q7SUFDQUcsYUFBYTtRQUNYSixNQUFNO1FBQ05DLE9BQU87SUFDVDtJQUNBSSxhQUFhO1FBQ1hMLE1BQU07UUFDTkMsT0FBTztJQUNUO0lBQ0FLLGVBQWU7UUFDYk4sTUFBTTtRQUNOQyxPQUFPO0lBQ1Q7SUFDQU0sT0FBTztRQUNMUCxNQUFNO1FBQ05DLE9BQU87SUFDVDtBQXlCRjtBQUV5QiIsInNvdXJjZXMiOlsiL1VzZXJzL2NwL0Rlc2t0b3AvTnVtYW4vbWctd2ViLTIvYXBwL19zaGFyZWQvcm91dGVzL2NvbnN0YW50cy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCByb3V0ZUNvbnN0YW50ID0ge1xuICAvLyBQdWJsaWMgUGFnZXNcblxuICBob21lOiB7XG4gICAgcGF0aDogXCIvXCIsXG4gICAgdGl0bGU6IFwiSG9tZVwiLFxuICB9LFxuICBtZW46IHtcbiAgICBwYXRoOiBcIi9jb2xsZWN0aW9ucy9tZW5cIixcbiAgICB0aXRsZTogXCJNZW5cIixcbiAgfSxcbiAgd29tZW46IHtcbiAgICBwYXRoOiBcIi9jb2xsZWN0aW9ucy93b21lblwiLFxuICAgIHRpdGxlOiBcIldvbWVuXCIsXG4gIH0sXG4gIG5ld0Fycml2YWxzOiB7XG4gICAgcGF0aDogXCIvY29sbGVjdGlvbnMvbmV3QXJyaXZhbHNcIixcbiAgICB0aXRsZTogXCJOZXcgQXJyaXZhbHNcIixcbiAgfSxcbiAgY29sbGVjdGlvbnM6IHtcbiAgICBwYXRoOiBcIi9jb2xsZWN0aW9uc1wiLFxuICAgIHRpdGxlOiBcIkNvbGxlY3Rpb25zXCIsXG4gIH0sXG4gIHByb2R1Y3REZXRhaWw6IHtcbiAgICBwYXRoOiBcIi9jb2xsZWN0aW9ucy86aWRcIixcbiAgICB0aXRsZTogXCJDb2xsZWN0aW9uc1wiLFxuICB9LFxuICBzYWxlczoge1xuICAgIHBhdGg6IFwiL2NvbGxlY3Rpb25zL3NhbGVzXCIsXG4gICAgdGl0bGU6IFwiU2FsZXNcIixcbiAgfSxcbiAgLy8gc29jaWFsTWVkaWE6IHtcbiAgLy8gICBwYXRoOiBcIi9zZXJ2aWNlL3NvY2lhbC1tZWRpYS1tYW5hZ2VtZW50XCIsXG4gIC8vICAgdGl0bGU6IFwiU29jaWFsIE1lZGlhIE1hbmFnZW1lbnRcIixcbiAgLy8gfSxcbiAgLy8gd2ViTW9iaWxlOiB7XG4gIC8vICAgcGF0aDogXCIvc2VydmljZS93ZWItZGV2ZWxvcG1lbnRcIixcbiAgLy8gICB0aXRsZTogXCJXZWIgJiBNb2JpbGUgRGV2ZWxvcG1lbnRcIixcbiAgLy8gfSxcbiAgLy8gYWJvdXQ6IHtcbiAgLy8gICBwYXRoOiBcIi9nZW5lcmFsL2Fib3V0XCIsXG4gIC8vICAgdGl0bGU6IFwiQWJvdXRcIixcbiAgLy8gfSxcbiAgLy8gY29udGFjdDoge1xuICAvLyAgIHBhdGg6IFwiL2dlbmVyYWwvY29udGFjdFwiLFxuICAvLyAgIHRpdGxlOiBcIkNvbnRhY3RcIixcbiAgLy8gfSxcbiAgLy8gcHJpdmFjeVBvbGljeToge1xuICAvLyAgIHBhdGg6IFwiL2dlbmVyYWwvcHJpdmFjeVBvbGljeVwiLFxuICAvLyAgIHRpdGxlOiBcIlByaXZhY3kgUG9saWN5XCIsXG4gIC8vIH0sXG4gIC8vIHVwbG9hZDoge1xuICAvLyAgIHBhdGg6IFwiL2dlbmVyYWwvdXBsb2FkXCIsXG4gIC8vICAgdGl0bGU6IFwiVXBsb2FkXCIsXG4gIC8vIH0sXG59O1xuXG5leHBvcnQgeyByb3V0ZUNvbnN0YW50IH07XG4iXSwibmFtZXMiOlsicm91dGVDb25zdGFudCIsImhvbWUiLCJwYXRoIiwidGl0bGUiLCJtZW4iLCJ3b21lbiIsIm5ld0Fycml2YWxzIiwiY29sbGVjdGlvbnMiLCJwcm9kdWN0RGV0YWlsIiwic2FsZXMiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(middleware)/./app/_shared/routes/constants.ts\n");
+
+/***/ })
+
+});

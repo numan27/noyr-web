@@ -1,0 +1,20 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.mainContainer {
+  .customContainer {
+    @include RP(("padding-top": 40,
+        "padding-bottom": 40,
+      ));
+  }
+}
+
+.reviewImage {
+  display: block;
+  margin: auto;
+  border-radius: 6px !important;
+  object-fit: contain !important;
+  height: auto;
+  @include RP(("width": 800,
+    ), 1);
+}

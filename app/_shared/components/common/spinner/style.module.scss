@@ -1,0 +1,11 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.cont {
+  @include RP(
+    (
+      "width": 24,
+      "height": 24,
+    )
+  );
+}

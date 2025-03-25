@@ -1,0 +1,23 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.header {
+  // background-color: $PRIMARY_LIGHT !important;
+  // height: 80px;
+  // @include RP(("height": 400,
+  //   ), 1);
+  // background-image: url("/bg-5.jpg");
+  // width: 100%;
+
+  // background-size: cover;
+  // background-repeat: no-repeat;
+}
+
+.cardContainer {
+  @include RP(("margin-top": 100,
+    ), 1);
+
+  p {
+    color: $SECONDARY !important;
+  }
+}

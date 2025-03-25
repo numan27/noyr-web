@@ -1,0 +1,79 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.pageWrapper {
+  @include RP(("padding-top": 40,
+      "padding-bottom": 50,
+    ));
+
+  .heroSection {
+    @media screen and (max-width: 640px) {
+      text-align: center !important;
+    }
+
+    @include RP(("padding-top": 50,
+        "padding-bottom": 50,
+      ));
+
+    h6 {
+      font-weight: 400 !important;
+      @include RP(("font-size": 18,
+          "margin-bottom": 15));
+    }
+
+    .contactDetailsContainer {
+      .socialIconsContainer {
+
+        .iconContainer {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          @include RP(("width": 70,
+              "height": 70,
+              "border-radius": 20,
+            ), 1);
+
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #EC1E24 0%, #902880 100%);
+            opacity: 0.2;
+            border-radius: inherit;
+            transition: opacity 0.3s ease-in-out;
+          }
+
+          svg {
+            position: relative;
+            color: inherit;
+            transition: color 0.3s ease-in-out;
+          }
+
+          &:hover {
+            &::before {
+              opacity: 1;
+            }
+
+            svg {
+              path {
+                stroke: $WHITE;
+                fill: $WHITE;
+              }
+            }
+          }
+        }
+
+
+      }
+    }
+  }
+
+  .contentWrapper {
+    @include RP(("padding-top": 40,
+        "padding-bottom": 50,
+      ));
+
+
+  }
+}

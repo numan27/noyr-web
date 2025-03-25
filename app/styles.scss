@@ -1,0 +1,248 @@
+@import "utils/responsive.module.scss";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-titillium) !important;
+
+  span {
+    color: $PRIMARY !important;
+  }
+}
+
+h1 {
+  @include RP(("font-size": 52,
+      "line-height": 60,
+    ), 1);
+
+  @media screen and (max-width: 1024px) {
+    @include RP(("font-size": 36,
+        "line-height": 50,
+      ), 1);
+  }
+
+  @media screen and (max-width: 640px) {
+    @include RP(("font-size": 28,
+        "line-height": 28,
+      ), 1);
+  }
+}
+
+h2 {
+  @include RP(("font-size": 48,
+      "line-height": 48,
+    ), 1);
+
+  @media screen and (max-width: 640px) {
+    @include RP(("font-size": 22,
+        "line-height": 26,
+      ), 1);
+  }
+}
+
+h3 {
+  @include RP(("font-size": 32,
+      "line-height": 36,
+    ), 1);
+
+  @media screen and (max-width: 640px) {
+    @include RP(("font-size": 20,
+      ));
+  }
+}
+
+h4 {
+  @include RP(("font-size": 26,
+    ));
+
+  @media screen and (max-width: 640px) {
+    @include RP(("font-size": 18,
+      ));
+  }
+}
+
+h5 {
+  @include RP(("font-size": 20,
+    ));
+}
+
+h6 {
+  @include RP(("font-size": 16,
+    ));
+}
+
+p {
+  font-weight: 500;
+  color: rgba($color: #fff, $alpha: 0.9) !important;
+  // color: #1a1a1a;
+  @include RP(("font-size": 16,
+    ), 1);
+
+  @media screen and (max-width: 640px) {
+    text-align: center;
+  }
+}
+
+.asterik {
+  color: $RED !important;
+}
+
+.customSort {
+  border: 1px solid $GRAY2;
+  border-radius: 6px !important;
+}
+
+.no-border-select {
+  border-color: transparent !important;
+}
+
+::placeholder {
+  color: $LIGHT_GRAY2 !important;
+  @include RP(("font-size": 14,
+    ), 1);
+}
+
+.label {
+  color: $DARK2;
+  @include RP(("font-size": 16,
+    ));
+}
+
+.labelSmall {
+  color: #1a1a1a !important;
+  font-weight: 500;
+  @include RP(("font-size": 14,
+    ));
+
+  span {
+    color: $BLUE !important;
+  }
+}
+
+.newsletter-input {
+  border: none !important;
+  color: #1a1a1a !important;
+  padding: 0 16px !important;
+  border-radius: 8px !important;
+  background-color: $WHITE !important;
+
+  input {
+    background-color: $WHITE !important;
+
+    &:focus {
+      background-color: $WHITE !important;
+    }
+
+  }
+}
+
+.full-height-button {
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+.md-height-button {
+  @include RP(("height": 40,
+      "max-height": 40,
+    ), 1);
+}
+
+.listingSlider {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center;
+  align-items: center;
+
+  .swiper-slide {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .swiper-slide.swiper-slide-active {
+    background-color: $PRIMARY;
+    flex: 5;
+    z-index: 2;
+    min-width: 574px;
+
+    .hiddenDesc,
+    .hiddenRole {
+      display: block;
+    }
+  }
+}
+
+.hiddenDesc,
+.hiddenRole {
+  display: none;
+}
+
+.transparent-button {
+  border-color: transparent !important;
+  background: transparent !important;
+  @include RP(("height": 49), 1);
+  max-height: 49px !important;
+
+  @media screen and (min-width: 450px) {
+    &:hover {
+      background: $PRIMARY !important;
+    }
+  }
+
+}
+
+@keyframes softGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(236, 30, 36, 0.6), 0 0 30px rgba(144, 40, 128, 0.4);
+    background: linear-gradient(135deg, rgba(236, 30, 36, 0.1) 0%, rgba(144, 40, 128, 0.1) 100%);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(236, 30, 36, 0.8), 0 0 40px rgba(144, 40, 128, 0.6);
+    background: linear-gradient(135deg, rgba(236, 30, 36, 0.2) 0%, rgba(144, 40, 128, 0.2) 100%);
+  }
+
+  100% {
+    box-shadow: none;
+    background: transparent;
+  }
+}
+
+.soft-glow {
+  animation: softGlow 2s ease-in-out;
+  transition: background 2s ease-in-out, box-shadow 2s ease-in-out;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+
+input:-webkit-autofill {
+  background-color: $BLACK !important;
+  /* Change to your desired color */
+  color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+  /* Prevents default yellow autofill */
+}
+
+input:-webkit-autofill:focus {
+  background-color: $BLACK !important;
+  /* Change for focus state */
+}
+
+.swiper-pagination {
+  margin-top: 15px !important;
+  padding-top: 15px !important;
+  bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+  background: #fff !important;
+  width: 9px !important;
+  height: 9px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: $PRIMARY !important;
+}

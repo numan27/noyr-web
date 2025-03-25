@@ -1,0 +1,14 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.pageWrapper {
+  @include RP(("padding-top": 40,
+      "padding-bottom": 50,
+    ));
+
+  .contentWrapper {
+    @include RP(("padding-top": 40,
+        "padding-bottom": 50,
+      ));
+  }
+}

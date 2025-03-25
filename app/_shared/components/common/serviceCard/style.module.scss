@@ -1,0 +1,98 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+
+.gridItem {
+  // border: 1px solid $WHITE;
+  background-color: transparent;
+  transition: all 0.1s ease-in-out;
+  border-radius: 8px;
+  height: 100% !important;
+  @include RP(("padding-top": 20,
+      "padding-bottom": 20,
+      "padding-left": 20,
+      "padding-right": 20,
+    ));
+
+  h3 {
+    font-weight: 500;
+    @include RP(("font-size": 24,
+      ), 1);
+  }
+
+  p {
+    color: rgba($color: #fff, $alpha: 0.9);
+    @include RP(("font-size": 18,
+      ));
+  }
+
+  .iconContainer {
+    @include RP(("width": 70,
+        "height": 70,
+      ));
+    background-color: $BLACK;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+
+    img {
+      @include RP(("width": 40,
+          "height": 40,
+        ));
+    }
+  }
+
+  &:hover {
+    background: $PRIMARY !important;
+
+    .iconContainer {
+      img {
+        // animation-play-state: paused;
+        animation: rotateIcon 6s linear infinite;
+      }
+
+    }
+
+  }
+}
+
+
+.linkContainer {
+  text-align: center;
+  position: relative;
+  @include RP(("padding-top": 40));
+
+  a {
+    color: $PRIMARY;
+    @include RP(("font-size": 18));
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 0%;
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+      background-color: transparent;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      &::before {
+        width: 100%;
+        background: $PRIMARY;
+      }
+    }
+  }
+}
+
+@keyframes rotateIcon {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

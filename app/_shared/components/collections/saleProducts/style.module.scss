@@ -1,0 +1,136 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.sectionContainer {
+  padding: 4rem 0;
+  background-color: #fff;
+}
+
+.productCard {
+  background: #fff;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    .productImage {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.productImageContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.plusIconContainer {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plusIcon {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+}
+
+.productVariations {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 4px 4px 0 0;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sizeSelector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sizeButton {
+  background: #fff;
+  border: 1px solid #ccc;
+  @include RP(("width": 40,
+      "height": 40,
+      "font-size": 14,
+    ), 1);
+  font-weight: 500 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $SECONDARY;
+  transition: background 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    border-color: #000;
+  }
+
+  &.selected {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+}
+
+.productDetails {
+  @include RP(("padding-top": 15,
+      "padding-bottom": 15,
+      "padding-left": 10,
+      "padding-right": 10,
+    ), 1);
+}
+
+.productName {
+  @include RP(("font-size": 15,
+    ), 1);
+  font-weight: 600;
+}
+
+.productColor {
+  @include RP(("font-size": 14,
+    ), 1);
+  color: #666 !important;
+}
+
+.productPrice {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000 !important;
+}

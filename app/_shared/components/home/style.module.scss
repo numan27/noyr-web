@@ -1,0 +1,39 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.homeWrapper {
+  position: relative;
+
+  .newsletterWrapper {
+    .bg {
+      z-index: 1 !important;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .sliderContainer {
+    background-image: url("../../../_assets/images/back-shadow.png");
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    // background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+
+
+  .backShadow {
+    position: absolute;
+    left: -100px;
+    top: 10vh;
+    z-index: 1;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+}

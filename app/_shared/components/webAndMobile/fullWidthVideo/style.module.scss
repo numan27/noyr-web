@@ -1,0 +1,9 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.sectionContainer {
+  @include RP(( // "padding-top": 40,
+      "padding-bottom": 40,
+    ));
+
+}
