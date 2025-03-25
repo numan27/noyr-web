@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/cp/Desktop/Numan/mg-web-2/app/layout\":[\"static/media/9bf67a161a796382-s.p.woff2\",\"static/media/f378bd2abf9e0d48-s.p.woff2\",\"static/media/28fac4a6e903645b-s.p.woff2\",\"static/media/969699447f100d3e-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

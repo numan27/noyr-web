@@ -1,7 +1,17 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/upload/route": "app/api/upload/route.js",
   "/(pages)/page": "app/(pages)/page.js",
+  "/(pages)/general/about/page": "app/(pages)/general/about/page.js",
+  "/(pages)/general/careers/page": "app/(pages)/general/careers/page.js",
+  "/(pages)/collections/lookbook/page": "app/(pages)/collections/lookbook/page.js",
+  "/(pages)/general/contact/page": "app/(pages)/general/contact/page.js",
   "/(pages)/collections/page": "app/(pages)/collections/page.js",
   "/(pages)/collections/[id]/page": "app/(pages)/collections/[id]/page.js",
+  "/(pages)/collections/web-development/page": "app/(pages)/collections/web-development/page.js",
+  "/(pages)/general/lookbook/page": "app/(pages)/general/lookbook/page.js",
+  "/(pages)/general/privacyPolicy/page": "app/(pages)/general/privacyPolicy/page.js",
   "/(pages)/collections/sales/page": "app/(pages)/collections/sales/page.js",
-  "/(pages)/collections/lookbook/page": "app/(pages)/collections/lookbook/page.js"
+  "/(pages)/collections/social-media-management/page": "app/(pages)/collections/social-media-management/page.js"
 }
