@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Noyr Store",
   description: "",
   alternates: {
-    // canonical: "https://hayesmediaco.com/",
+    canonical: "https://hayesmediaco.com/",
   },
 };
 
