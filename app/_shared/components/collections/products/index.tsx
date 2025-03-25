@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 import classNames from "classnames";
 import { products } from "utils/constants";
 import CartSideCanvas from "components/common/cartSideCanvas";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import ProductCard from "../productCard";
 
 type SegmentType = "men" | "women" | "new-arrivals" | "all";
@@ -18,16 +18,10 @@ const tabs: { id: SegmentType; label: string }[] = [
 ];
 
 export default function Products() {
-  const searchParams = useSearchParams();
+  const [isMounted, setIsMounted] = useState(false);
+  const [segment, setSegment] = useState<SegmentType>("all");
   const router = useRouter();
   const pathname = usePathname();
-
-  const segmentParam = searchParams.toString().split("=")[0] || "all";
-  const segment: SegmentType = ["men", "women", "new-arrivals"].includes(
-    segmentParam
-  )
-    ? (segmentParam as SegmentType)
-    : "all";
 
   const [selectedVariations, setSelectedVariations] = useState<
     Record<string, string | null>
@@ -36,8 +30,22 @@ export default function Products() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<any[]>([]);
 
+  useEffect(() => {
+    setIsMounted(true);
+    // Parse URL params on client side
+    const params = new URLSearchParams(window.location.search);
+    const segmentParam = params.toString().split("=")[0] || "all";
+    const validSegment: SegmentType = ["men", "women", "new-arrivals"].includes(
+      segmentParam
+    )
+      ? (segmentParam as SegmentType)
+      : "all";
+    setSegment(validSegment);
+  }, []);
+
   // Update URL when tab changes
   const handleTabChange = (newSegment: SegmentType) => {
+    setSegment(newSegment);
     const param = newSegment === "all" ? "" : `?${newSegment}`;
     router.push(`${pathname}${param}`);
   };
@@ -55,6 +63,43 @@ export default function Products() {
         return true; // 'all' case
     }
   });
+
+  if (!isMounted) {
+    // Return a skeleton loader or null during SSR/prerendering
+    return (
+      <section className={styles.sectionContainer}>
+        <div className={styles.customContainer}>
+          <div className="flex justify-center mb-8 gap-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className="px-4 py-2 border-b-2 border-transparent text-gray-500"
+                disabled
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          <div
+            className={classNames(
+              styles.productGrid,
+              "grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-0.5"
+            )}
+          >
+            {/* Skeleton loading placeholders */}
+            {Array(8)
+              .fill(0)
+              .map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-gray-100 aspect-square animate-pulse"
+                />
+              ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.sectionContainer}>
