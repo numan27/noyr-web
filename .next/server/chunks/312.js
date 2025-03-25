@@ -1,1 +1,0 @@
-"use strict";exports.id=312,exports.ids=[312],exports.modules={45312:(t,r,o)=>{o.d(r,{sk9:()=>s});var e=o(23904);function s(t){return(0,e.k5)({tag:"svg",attr:{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round"},child:[{tag:"path",attr:{d:"M20 6 9 17l-5-5"},child:[]}]})(t)}}};
