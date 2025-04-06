@@ -73,7 +73,7 @@ const HeaderCollections = () => {
       )}
     >
       <div className="container px-4 mx-auto">
-        <div
+        {/* <div
           className={classNames(
             styles.sideCanvasTrigger,
             "fixed left-0 top-32 cursor-pointer"
@@ -84,7 +84,7 @@ const HeaderCollections = () => {
             <Grid size={24} className={styles.icon} />
             <span className={styles.iconText}>Collections</span>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -242,13 +242,13 @@ const HeaderCollections = () => {
       )}
 
       {/* SideCanvas */}
-      <SideCanvas
+      {/* <SideCanvas
         isOpen={isHovered}
         setIsOpen={setIsHovered}
         // @ts-ignore
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-      />
+      /> */}
 
       {/* CartSideCanvas */}
       <CartSideCanvas isOpen={isCartOpen} setIsOpen={setIsCartOpen} />

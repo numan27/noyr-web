@@ -241,13 +241,13 @@ const Header = () => {
       )}
 
       {/* SideCanvas */}
-      <SideCanvas
+      {/* <SideCanvas
         isOpen={isHovered}
         setIsOpen={setIsHovered}
         // @ts-ignore
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-      />
+      /> */}
 
       {/* CartSideCanvas */}
       <CartSideCanvas isOpen={isCartOpen} setIsOpen={setIsCartOpen} />
