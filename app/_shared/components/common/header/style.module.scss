@@ -14,7 +14,7 @@
 
   .logo {
     img {
-      @include RP(("width": 150,
+      @include RP(("width": 130,
         ), 1);
     }
   }
@@ -65,7 +65,8 @@
       margin-left: -4px;
 
       .subMenuItem {
-        @include RP(("height": 46,
+        cursor: pointer !important;
+        @include RP(("height": 36,
           ));
         border-bottom: 0.5px solid #f5f6f68e;
         display: flex;
@@ -75,13 +76,18 @@
           border-bottom: none;
         }
 
+        // &:first-child {
+        //   border-top-right-radius: 4px !important;
+        //   border-top-left-radius: 4px !important;
+        // }
+
         .subMenuLink {
           text-wrap: nowrap;
           @include RP(("font-size": 14,
               "padding-left": 16,
               "padding-right": 16,
-              "padding-top": 12,
-              "padding-bottom": 12,
+              "padding-top": 6,
+              "padding-bottom": 6,
             ));
           color: $WHITE;
           font-weight: 467;
@@ -101,7 +107,7 @@
     color: $WHITE !important;
     font-weight: 500;
     position: relative;
-    @include RP(("font-size": 15));
+    @include RP(("font-size": 14));
     transition: all 0.3s ease-in-out;
 
     &:hover {
@@ -120,8 +126,10 @@
     }
 
     svg {
+      width: 16px;
+
       path {
-        stroke: $DESC;
+        stroke: $PRIMARY;
       }
     }
   }

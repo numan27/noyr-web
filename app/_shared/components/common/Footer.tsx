@@ -5,6 +5,7 @@ import {
   Instagram,
   Facebook,
   Youtube,
+  Star,
 } from "lucide-react";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
@@ -22,18 +23,22 @@ const Footer: React.FC = () => {
           label: "New Arrivals",
           href: routeConstant.collections.path + "?new-arrivals",
         },
-        { label: "Sale", href: routeConstant.sales.path },
-        { label: "Lookbook", href: routeConstant.lookbook.path },
+        { label: "Lookbooks", href: routeConstant.lookbook.path },
       ],
     },
     {
       title: "Help",
       links: [
-        { label: "Customer Service", href: "#" },
-        { label: "My Account", href: "#" },
-        { label: "Store Locator", href: "#" },
-        { label: "Legal & Privacy", href: "#" },
-        { label: "Contact", href: "#" },
+        {
+          label: "Terms & Conditions",
+          href: routeConstant.termsAndConditions.path,
+        },
+        {
+          label: "Shipping & Returns",
+          href: routeConstant.shippingAndReturns.path,
+        },
+        { label: "About Us", href: routeConstant.about.path },
+        { label: "Contact Us", href: routeConstant.contact.path },
       ],
     },
   ];
@@ -102,25 +107,42 @@ const Footer: React.FC = () => {
             </div>
           ))}
 
-          {/* Newsletter */}
+          {/* Review Prompt */}
           <div>
-            <h4 className="text-lg text-white font-medium mb-4">Newsletter</h4>
+            <h4 className="text-lg text-white font-medium mb-4">
+              Share Your Experience
+            </h4>
             <p className="mb-4">
-              Subscribe to receive updates, access to exclusive deals, and more.
+              We value your feedback! Rate your shopping experience with us.
             </p>
-            <form className="flex">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="bg-white/10 px-4 py-2 w-full text-white placeholder:text-white/50 focus:outline-none"
+
+            <div className="mb-4">
+              <p className="text-sm text-white/70 mb-2">
+                How would you rate us?
+              </p>
+              <div className="flex space-x-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    className="text-white/70 hover:text-yellow-400 hover:fill-yellow-400 transition-colors"
+                    aria-label={`Rate ${star} star`}
+                  >
+                    <Star size={20} />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* <div className="mb-4">
+              <textarea
+                placeholder="Tell us about your experience..."
+                className="w-full bg-white/10 px-4 py-2 text-white placeholder:text-white/50 focus:outline-none min-h-[100px]"
               />
-              <button
-                type="submit"
-                className="bg-white text-black px-4 hover:bg-sand-100 transition-colors"
-              >
-                <ArrowRight size={20} />
-              </button>
-            </form>
+            </div> */}
+
+            {/* <button className="bg-white text-black px-6 py-2 hover:bg-sand-100 transition-colors text-sm font-medium">
+              Submit Review
+            </button> */}
           </div>
         </div>
 

@@ -18,7 +18,7 @@ const CustomProvider = ({ children }: any) => {
     <div>
       <Next13ProgressBar
         height="4px"
-        color="#ED1C24"
+        color="#866146"
         options={{ showSpinner: false }}
         showOnShallow
       />

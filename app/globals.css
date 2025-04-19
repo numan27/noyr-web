@@ -287,9 +287,9 @@ body {
   align-items: center;
   height: 100%;
 }
-#nprogress .bar {
+/* #nprogress .bar {
   background: linear-gradient(135deg, #ec1e24 0%, #902880 100%) !important;
-}
+} */
 /* .swiper-slide:nth-child(n-1) {
   max-width: fit-content !important;
   width: fit-content !important;

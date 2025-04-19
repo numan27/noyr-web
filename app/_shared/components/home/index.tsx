@@ -2,13 +2,15 @@
 
 import classNames from "classnames";
 import styles from "./style.module.scss";
-import { Images } from "assets";
 import HeroSection from "./HeroSection";
 import CollectionsSection from "./CollectionsSection";
 import FeaturedSection from "./FeaturedSection";
-import CategorySection from "./CategorySection";
+import CategorySection from "./ctaSection";
 import { useEffect } from "react";
 import VerticalNavbar from "./verticalNav";
+import ProductsSection from "./productsSection";
+import CollectionsSectionDown from "./CollectionsSectionDown";
+import CTASection from "./ctaSection";
 
 const LandingPage = () => {
   useEffect(() => {
@@ -52,8 +54,11 @@ const LandingPage = () => {
       {/* <VerticalNavbar /> */}
       <HeroSection id="hero" />
       <CollectionsSection id="collections" />
-      <FeaturedSection id="featured" />
-      <CategorySection id="category" />
+      {/* <FeaturedSection id="featured" /> */}
+      <ProductsSection id="" />
+      <CollectionsSectionDown id="" />
+      <ProductsSection id="" />
+      <CTASection id="cta" />
     </div>
   );
 };

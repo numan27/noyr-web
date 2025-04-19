@@ -3,30 +3,7 @@ import styles from "../../styles/Home.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
-
-const collections = [
-  {
-    id: 1,
-    name: "New Arrivals",
-    description: "Discover the freshest styles just added to our collection.",
-    image: "/lovable-uploads/159afba9-869b-47b4-bdc1-0bf0272318b5.png",
-    path: routeConstant.collections.path + "?new-arrivals",
-  },
-  {
-    id: 2,
-    name: "Men",
-    description: "Elevate your style with our latest men's fashion essentials.",
-    image: "/lovable-uploads/67a15a06-3247-4336-ad6a-da800d6277c8.png",
-    path: routeConstant.collections.path + "?men",
-  },
-  {
-    id: 3,
-    name: "Women",
-    description: "Chic and timeless fashion designed for modern women.",
-    image: "/lovable-uploads/159afba9-869b-47b4-bdc1-0bf0272318b5.png",
-    path: routeConstant.collections.path + "?women",
-  },
-];
+import CustomButton from "components/common/customButton";
 
 interface HomeSectionProps {
   id: string;
@@ -56,55 +33,75 @@ const CollectionsSection = ({ id }: HomeSectionProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const collections = [
+    {
+      id: 1,
+      name: "T-Shirts",
+      description: "Discover our comfortable and stylish t-shirt collection.",
+      image: "/bg-2-flipped.png",
+      path: routeConstant.collections.path + "?t-shirts",
+    },
+    {
+      id: 2,
+      name: "Jeans",
+      description: "Premium quality jeans for every style and occasion.",
+      image: "/bg-jeans.jpg",
+      path: routeConstant.collections.path + "?jeans",
+    },
+  ];
+
   return (
     <section
       ref={sectionRef}
       className={classNames(
         styles.collectionsSection,
-        "py-24 bg-brand-950 relative overflow-hidden"
+        "relative bg-brand-950 overflow-hidden min-h-screen"
       )}
       id="collections"
-      style={{
-        backgroundImage: "url('/bg-2.jpg')",
-      }}
     >
-      <div className="container mx-auto px-4 relative">
-        <div className="mb-16 text-center">
-          <span className="uppercase text-sand-500 tracking-widest text-base mb-2 inline-block">
-            Explore
-          </span>
-          <h2 className="text-4xl font-serif text-white mb-4">
-            Our Collections
-          </h2>
-          <div className="w-12 h-[1px] bg-sand-500 mx-auto"></div>
-        </div>
-
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+      <div className="w-full h-full">
+        <div className="flex flex-col md:flex-row w-full h-full">
           {collections.map((collection, index) => (
-            <Link href={collection.path} key={collection.id}>
+            <div
+              key={collection.id}
+              className="w-full md:w-1/2 relative group min-h-[50vh] md:h-full"
+            >
               <div
-                className="relative md:h-80 h-32 overflow-hidden group animate-fade-in opacity-0 cursor-pointer"
-                style={{ animationDelay: `${0.2 * (index + 1)}s` }}
+                className="relative h-full overflow-hidden animate-fade-in opacity-0"
+                style={{
+                  animationDelay: `${0.2 * (index + 1)}s`,
+                  backgroundImage: `url(${collection.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${collection.image})` }}
-                ></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="absolute inset-x-0 bottom-0 p-6 text-white transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
-                  <h3 className="text-2xl font-serif mb-2">
+                <div className="absolute inset-x-0 top-10 p-6 md:p-12 text-white transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                  <h3 className="text-2xl md:text-3xl font-serif mb-2">
                     {collection.name}
                   </h3>
                   <p className="text-white/70 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-left">
                     {collection.description}
                   </p>
-                  <div className="border-b border-white pb-1 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-max">
-                    Explore <span className="ml-2">→</span>
-                  </div>
+                </div>
+
+                {/* Mobile-only button*/}
+                <div className="md:hidden absolute inset-x-0 bottom-10 p-6 text-center">
+                  <Link href={collection.path}>
+                    <CustomButton title="Shop Now" />
+                  </Link>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
+        </div>
+
+        {/* Desktop-only button */}
+        <div className="hidden md:block py-8 text-center absolute inset-x-0 bottom-10 transform -translate-y-1/2 w-fit mx-auto">
+          <Link href={routeConstant.collections.path}>
+            <CustomButton title="Shop Now" />
+          </Link>
         </div>
       </div>
     </section>

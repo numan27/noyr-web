@@ -12,6 +12,7 @@ type ProductCardProps = {
     color: string;
     colorsAvailable: string;
     image: StaticImageData;
+    hoverImage?: StaticImageData; // Add hoverImage to the product type
   };
   selectedVariation: string | null;
   onVariationSelect: (productId: string, size: string) => void;
@@ -40,13 +41,29 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <Link
           href={routeConstant.productDetail.path.replace(":id", product.id)}
         >
-          <Image
-            src={product.image}
-            alt={product.name}
-            className={styles.productImage}
-            width={300}
-            height={400}
-          />
+          {/* Main product image */}
+          <div className={styles.imageWrapper}>
+            <Image
+              src={product.image}
+              alt={product.name}
+              className={classNames(
+                styles.productImage,
+                product.hoverImage && styles.mainImage
+              )}
+              width={300}
+              height={400}
+            />
+            {/* Hover image (only shown if hoverImage exists) */}
+            {product.hoverImage && (
+              <Image
+                src={product.hoverImage}
+                alt={`${product.name} on model`}
+                className={classNames(styles.productImage, styles.hoverImage)}
+                width={300}
+                height={400}
+              />
+            )}
+          </div>
         </Link>
         <div
           className={classNames(

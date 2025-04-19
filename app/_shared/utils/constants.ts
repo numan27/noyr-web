@@ -9,6 +9,7 @@ type Product = {
   color: string;
   colorsAvailable: string;
   image: StaticImageData;
+  hoverImage: StaticImageData;
   category?: string;
   isNew?: boolean;
   description?: string;
@@ -27,6 +28,7 @@ const products: Product[] = [
     colorsAvailable: "10",
     price: "$15",
     image: Images.Product1,
+    hoverImage: Images.Team1,
     category: "men",
     isNew: true,
     description:
@@ -44,6 +46,7 @@ const products: Product[] = [
     colorsAvailable: "3",
     price: "$155",
     image: Images.Product2,
+    hoverImage: Images.Team2,
     category: "women",
     isNew: true,
     description: "Soft cotton blend t-shirt with minimalist crest design.",
@@ -60,6 +63,7 @@ const products: Product[] = [
     colorsAvailable: "5",
     price: "$45",
     image: Images.Product3,
+    hoverImage: Images.Team4,
     category: "men",
     description: "Timeless crewneck tee with subtle logo branding.",
     sizes: ["S", "M", "L", "XL", "XXL"],
@@ -75,6 +79,7 @@ const products: Product[] = [
     colorsAvailable: "4",
     price: "$65",
     image: Images.Product4,
+    hoverImage: Images.Team3,
     category: "men",
     description: "Performance polo with moisture-wicking technology.",
     sizes: ["M", "L", "XL"],
@@ -90,6 +95,7 @@ const products: Product[] = [
     colorsAvailable: "3",
     price: "$120",
     image: Images.Product1,
+    hoverImage: Images.Team1,
     category: "men",
     description: "Slim-straight jeans with premium Japanese denim.",
     sizes: ["28", "30", "32", "34"],
@@ -105,6 +111,7 @@ const products: Product[] = [
     colorsAvailable: "6",
     price: "$85",
     image: Images.Product2,
+    hoverImage: Images.CeoPlaceholder,
     category: "men",
     description: "Lightweight hoodie with breathable fabric technology.",
     sizes: ["S", "M", "L", "XL"],
@@ -120,6 +127,7 @@ const products: Product[] = [
     colorsAvailable: "2",
     price: "$175",
     image: Images.Product1,
+    hoverImage: Images.Team2,
     category: "women",
     isNew: true,
     description: "Structured oversized blazer with notched lapels.",
@@ -136,6 +144,7 @@ const products: Product[] = [
     colorsAvailable: "4",
     price: "$55",
     image: Images.Product2,
+    hoverImage: Images.Team4,
     category: "women",
     description: "Luxurious silk camisole with adjustable straps.",
     sizes: ["XS", "S", "M"],
@@ -151,6 +160,7 @@ const products: Product[] = [
     colorsAvailable: "3",
     price: "$95",
     image: Images.Product3,
+    hoverImage: Images.Team2,
     category: "women",
     description: "Tailored high-waisted trousers with front pleats.",
     sizes: ["2", "4", "6", "8"],
@@ -166,6 +176,7 @@ const products: Product[] = [
     colorsAvailable: "5",
     price: "$145",
     image: Images.Product4,
+    hoverImage: Images.Team2,
     category: "women",
     description: "Ultra-soft cashmere sweater with ribbed detailing.",
     sizes: ["XS", "S", "M", "L"],
@@ -181,6 +192,7 @@ const products: Product[] = [
     colorsAvailable: "3",
     price: "$90",
     image: Images.Product1,
+    hoverImage: Images.Team1,
     category: "men",
     isNew: true,
     description: "Performance joggers with water-resistant finish.",
@@ -197,6 +209,7 @@ const products: Product[] = [
     colorsAvailable: "2",
     price: "$125",
     image: Images.Product2,
+    hoverImage: Images.Team2,
     category: "women",
     isNew: true,
     description: "Flattering wrap dress with adjustable waist tie.",
@@ -213,6 +226,7 @@ const products: Product[] = [
     colorsAvailable: "4",
     price: "$195",
     image: Images.Product3,
+    hoverImage: Images.Team3,
     category: "women",
     description: "Genuine leather crossbody with multiple compartments.",
     sizes: ["One Size"],
@@ -228,6 +242,7 @@ const products: Product[] = [
     colorsAvailable: "5",
     price: "$60",
     image: Images.Product4,
+    hoverImage: Images.Team4,
     category: "men",
     description: "Classic chino shorts with functional pockets.",
     sizes: ["30", "32", "34", "36"],
@@ -243,6 +258,7 @@ const products: Product[] = [
     colorsAvailable: "3",
     price: "$75",
     image: Images.Product1,
+    hoverImage: Images.Team4,
     category: "men",
     description: "Breathable linen shirt with button-down collar.",
     sizes: ["S", "M", "L", "XL"],
@@ -258,6 +274,7 @@ const products: Product[] = [
     colorsAvailable: "2",
     price: "$85",
     image: Images.Product2,
+    hoverImage: Images.Team3,
     category: "women",
     description: "Flowy midi skirt with delicate pleating.",
     sizes: ["XS", "S", "M"],
@@ -269,40 +286,72 @@ const products: Product[] = [
 ];
 
 const headerLinks: SideBarItemPathType[] = [
-  {
-    path: routeConstant.collections.path + "?men",
-    title: routeConstant.men.title,
-  },
   // {
-  //   path: "",
-  //   title: routeConstant.services.title,
-  //   children: [
-  //     {
-  //       path: routeConstant.advertisement.path,
-  //       title: routeConstant.advertisement.title,
-  //     },
-  //     {
-  //       path: routeConstant.socialMedia.path,
-  //       title: routeConstant.socialMedia.title,
-  //     },
-  //     {
-  //       path: routeConstant.webMobile.path,
-  //       title: routeConstant.webMobile.title,
-  //     },
-  //   ],
+  //   path: routeConstant.collections.path + "?men",
+  //   title: routeConstant.men.title,
   // },
   {
-    path: routeConstant.collections.path + "?women",
-    title: routeConstant.women.title,
+    path: "",
+    title: routeConstant.shop.title,
+    children: [
+      {
+        path: routeConstant.collections.path + "?men",
+        title: routeConstant.men.title,
+      },
+      {
+        path: routeConstant.collections.path + "?women",
+        title: routeConstant.women.title,
+      },
+      {
+        path: routeConstant.collections.path,
+        title: routeConstant.collections.title,
+      },
+    ],
   },
   {
-    path: routeConstant.collections.path,
-    title: routeConstant.collections.title,
+    path: "",
+    title: routeConstant.brand.title,
+    children: [
+      {
+        path: routeConstant.lookbook.path,
+        title: routeConstant.lookbook.title,
+      },
+      {
+        path: routeConstant.about.path,
+        title: routeConstant.about.title,
+      },
+    ],
   },
   {
-    path: routeConstant.sales.path,
-    title: routeConstant.sales.title,
+    path: "",
+    title: routeConstant.info.title,
+    children: [
+      {
+        path: routeConstant.contact.path,
+        title: routeConstant.contact.title,
+      },
+      {
+        path: routeConstant.termsAndConditions.path,
+        title: routeConstant.termsAndConditions.title,
+      },
+      {
+        path: routeConstant.shippingAndReturns.path,
+        title: routeConstant.shippingAndReturns.title,
+      },
+    ],
   },
+  // {
+  //   path: routeConstant.collections.path + "?women",
+  //   title: routeConstant.women.title,
+  // },
+  // {
+  //   path: routeConstant.collections.path,
+  //   title: routeConstant.collections.title,
+  // },
+  // {
+  //   path: routeConstant.sales.path,
+  //   title: routeConstant.sales.title,
+  // },
 ];
 
 export { headerLinks, products };

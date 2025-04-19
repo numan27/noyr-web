@@ -1,3 +1,6 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
 .heroSection {
   height: 100vh;
   display: flex;
@@ -42,6 +45,10 @@
     height: 100%;
     position: absolute;
     background: rgba(0, 0, 0, 0.4);
+  }
+
+  @media screen and (max-width: 768px) {
+    background-position: center !important;
   }
 }
 
@@ -91,6 +98,23 @@
 .heroContent {
   position: relative;
   z-index: 10;
+  @include RP(("padding-bottom": 80,
+    ), 1);
+
+  p {
+    text-transform: uppercase;
+    font-weight: 700 !important;
+  }
+
+  h4 {
+    text-transform: uppercase;
+    font-weight: 700 !important;
+  }
+
+  .mainLink {
+    @include RP(("font-size": 16,
+      ), 1);
+  }
 }
 
 .heroTitle {
@@ -280,8 +304,8 @@
 
 @media (max-width: 768px) {
 
-  .heroSection,
-  .collectionsSection,
+  // .heroSection,
+  // .collectionsSection,
   // .featuredSection,
   .categorySection {
     height: auto;

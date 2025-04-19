@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ShoppingBag, Search, Grid, ArrowRight, Menu, X } from "lucide-react";
+import { ShoppingBag, Search, ArrowRight, Menu, X } from "lucide-react";
 import SideCanvas from "../sideCanvas";
 import CartSideCanvas from "../cartSideCanvas";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 import { headerLinks } from "utils/constants";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Images } from "assets";
+import { Icons, Images } from "assets";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { routeConstant } from "routes/constants";
 
@@ -68,7 +68,7 @@ const Header = () => {
       className={classNames(
         styles.header,
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        { "glass-navbar py-3": isScrolled, "py-5": !isScrolled }
+        { "glass-navbar py-2": isScrolled, "py-2.5": !isScrolled }
       )}
     >
       <div className="container px-4 mx-auto">
@@ -85,104 +85,113 @@ const Header = () => {
           </div>
         </div> */}
 
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href={routeConstant.home.path}
-            className={classNames(styles.logo)}
-          >
-            <Image width={150} src={Images.Logo} alt="Noyr-Logo" />
-          </Link>
-
+        <div className="flex items-center">
           {/* Desktop */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <ul
-              className={classNames(
-                styles.main__menu,
-                "md:flex items-center gap-5 hidden ms-2"
-              )}
-            >
-              {headerLinks.map((link, index) => (
-                <li key={index} className={classNames("relative group")}>
-                  <Link
-                    href={link.path || ""}
-                    className={classNames(
-                      styles.navLink,
-                      (pathname === link.path ||
-                        link.children?.some((child) =>
-                          pathname.startsWith(child.path)
-                        )) &&
-                        styles.activeLink,
-                      "flex items-center uppercase",
-                      { "text-black/80": isScrolled || width < 576 }
-                    )}
-                  >
-                    {link.title}
-                  </Link>
-
-                  {link.children && (
-                    <ul
+          <div className="hidden md:flex flex-1 justify-start">
+            <nav className="flex items-center space-x-8">
+              <ul
+                className={classNames(
+                  styles.main__menu,
+                  "md:flex items-center gap-7 hidden ms-2"
+                )}
+              >
+                {headerLinks.map((link, index) => (
+                  <li key={index} className={classNames("relative group")}>
+                    <Link
+                      href={link.path || ""}
                       className={classNames(
-                        styles.subMenu,
-                        "absolute left-0 hidden group-hover:block"
+                        styles.navLink,
+                        (pathname === link.path ||
+                          link.children?.some((child) =>
+                            pathname.startsWith(child.path)
+                          )) &&
+                          styles.activeLink,
+                        "flex items-center uppercase",
+                        { "text-black/80": isScrolled || width < 576 }
                       )}
                     >
-                      {link.children.map((child, childIndex) => (
-                        <li
-                          className={classNames(styles.subMenuItem)}
-                          key={childIndex}
-                        >
-                          <Link
-                            href={child.path}
-                            className={classNames(
-                              styles.subMenuLink,
-                              pathname === child.path &&
-                                styles.activeSubMenuLink
-                            )}
+                      {link.title}
+                      {/* <span>
+                        <Icons.ChevDown />
+                      </span> */}
+                    </Link>
+
+                    {link.children && (
+                      <ul
+                        className={classNames(
+                          styles.subMenu,
+                          "absolute left-0 hidden group-hover:block"
+                        )}
+                      >
+                        {link.children.map((child, childIndex) => (
+                          <li
+                            className={classNames(styles.subMenuItem)}
+                            key={childIndex}
                           >
-                            {child.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+                            <Link
+                              href={child.path}
+                              className={classNames(
+                                styles.subMenuLink,
+                                pathname === child.path &&
+                                  styles.activeSubMenuLink
+                              )}
+                            >
+                              {child.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Logo */}
+          <div className="flex-1 md:flex-none md:mx-auto">
+            <Link
+              href={routeConstant.home.path}
+              className={classNames(styles.logo)}
+            >
+              <Image width={130} src={Images.Logo} alt="Noyr-Logo" />
+            </Link>
+          </div>
 
           {/* Icons */}
-          <div className="flex items-center space-x-5 z-50">
-            <button
-              className={classNames(
-                "text-white/90 hover:text-white transition-colors",
-                { "text-black/80": isScrolled }
-              )}
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
-              <Search size={20} />
-            </button>
-            {/* <button className="text-white/90 hover:text-white transition-colors">
+          <div className="flex-1 flex justify-end">
+            <div className="flex items-center space-x-5 z-50">
+              <button
+                className={classNames(
+                  "text-white/90 hover:text-white transition-colors",
+                  { "text-black/80": isScrolled }
+                )}
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+              >
+                <Search size={20} />
+              </button>
+              {/* <button className="text-white/90 hover:text-white transition-colors">
               <User size={20} />
             </button> */}
-            <button
-              className={classNames(
-                "text-white/90 hover:text-white transition-colors",
-                { "text-black/80": isScrolled }
-              )}
-              onClick={() => setIsCartOpen(!isCartOpen)}
-            >
-              <ShoppingBag size={20} />
-            </button>
-            <button
-              className={classNames(
-                "text-white/90 hover:text-white transition-colors md:hidden",
-                { "text-black/80": isScrolled }
-              )}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              <button
+                className={classNames(
+                  "text-white/90 hover:text-white transition-colors",
+                  { "text-black/80": isScrolled }
+                )}
+                onClick={() => setIsCartOpen(!isCartOpen)}
+              >
+                <ShoppingBag size={20} />
+              </button>
+              <button
+                className={classNames(
+                  "text-white/90 hover:text-white transition-colors md:hidden",
+                  { "text-black/80": isScrolled }
+                )}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
         {/* Mobile Menu */}

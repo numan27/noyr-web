@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import styles from "../../styles/Home.module.scss";
-import CustomButton from "components/common/customButton";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
+import classNames from "classnames";
 
 interface HomeSectionProps {
   id: string;
@@ -10,6 +10,7 @@ interface HomeSectionProps {
 
 const HeroSection = ({ id }: HomeSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +29,18 @@ const HeroSection = ({ id }: HomeSectionProps) => {
       }
     };
 
+    // Try to play video (autoplay may be blocked by browser)
+    const playVideo = () => {
+      if (videoRef.current) {
+        videoRef.current.play().catch((error) => {
+          console.log("Video autoplay was prevented:", error);
+        });
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    playVideo();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -36,34 +48,49 @@ const HeroSection = ({ id }: HomeSectionProps) => {
     <div
       id="hero"
       ref={sectionRef}
-      className={`${styles.heroSection} bg-brand-900`}
-      style={{
-        backgroundImage: "url('/bg-1.jpg')",
-      }}
+      className={`${styles.heroSection} bg-brand-900 relative overflow-hidden`}
     >
-      <div className="absolute inset-0 bg-black/30"></div>
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      >
+        <source src="/banner-video.webm" type="video/webm" />
+        <source src="/banner-video.mp4" type="video/mp4" />
+        {/* Fallback image if video doesn't load */}
+        <img
+          src="/bg-1.jpg"
+          alt="Fallback banner"
+          className="w-full h-full object-cover"
+        />
+      </video>
+
+      <div className="absolute inset-0 bg-black/30 z-10"></div>
       <div
-        className={`${styles.heroContent} container mx-auto px-4 text-center`}
+        className={`${styles.heroContent} container mx-auto px-4 text-center flex justify-center items-end h-full relative z-20`}
       >
         <div
-          className="animate-fade-in opacity-0 w-7/12 mx-auto flex flex-col gap-6"
+          className="animate-fade-in opacity-0 sm:w-7/12 w-full mx-auto flex flex-col items-center gap-2"
           style={{ animationDelay: "0.3s" }}
         >
-          <h1 className="">Effortless Style, Timeless Elegance</h1>
-          <p>
-            Our collection blends modern minimalism with timeless charm,
-            creating effortlessly stylish pieces for every occasion. Elevate
-            your wardrobe with fashion that feels as good as it looks.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-            {/* <CustomButton title="Shop Now" /> */}
-            <Link href={routeConstant.collections.path}>
-              <CustomButton title="Explore Collections" />
-            </Link>
-          </div>
+          <p className="tracking-wider">Now Live</p>
+          <h4 className="tracking-wide">NOYR Summer Collections</h4>
+          <Link
+            href={routeConstant.collections.path}
+            className={classNames(
+              styles.mainLink,
+              "border-b text-white border-white pb-1 flex items-center transition-opacity duration-300 w-max"
+            )}
+          >
+            Shop Now <span className="ml-2">→</span>
+          </Link>
         </div>
       </div>
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
         <svg
           width="24"
           height="24"
@@ -77,7 +104,7 @@ const HeroSection = ({ id }: HomeSectionProps) => {
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
-      </div>
+      </div> */}
     </div>
   );
 };
