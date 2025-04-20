@@ -1,0 +1,32 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.sectionWrapper {
+
+  @include RP(("padding-top": 50,
+      "padding-bottom": 50,
+    ));
+  background: $PRIMARY;
+
+  .contentContainer {
+    .statItem {
+      .number {
+        font-weight: 700 !important;
+        @include RP(("font-size": 50,
+          ), 1);
+      }
+    }
+
+    p {
+      text-transform: uppercase;
+      @include RP(("margin-top": 25,
+        ), 1);
+    }
+
+    svg {
+      @include RP(("width": 24,
+          "height": 24,
+        ), 1);
+    }
+  }
+}

@@ -1,0 +1,82 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.sectionContainer {
+    background-color: #23A5910F;
+    @include RP(("padding-top": 80,
+            "padding-bottom": 80,
+        ));
+
+    .contentWrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+        color: $PRIMARY;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 1px;
+            background-color: #333;
+        }
+    }
+
+    .sectionText {
+        line-height: 1.8;
+        font-weight: 300;
+        font-size: 1rem;
+        color: #000 !important;
+    }
+
+    .valuesList {
+        list-style: none;
+        padding: 0;
+    }
+
+    .valueItem {
+        padding: 0.5rem 0;
+        font-weight: 300;
+        position: relative;
+        padding-left: 1.5rem;
+        color: #000;
+
+        &::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    // Responsive adjustments
+    @media (max-width: 768px) {
+        .contentWrapper {
+            grid-template-columns: 1fr;
+            padding: 2rem 1rem;
+            gap: 2rem;
+        }
+
+        .heroTitle {
+            font-size: 2rem;
+        }
+
+        .heroSubtitle {
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+    }
+
+}

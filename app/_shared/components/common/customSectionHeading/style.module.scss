@@ -6,6 +6,7 @@
     position: relative;
 
     h2 {
+      color: #141212 !important;
       margin-bottom: 0;
       text-transform: uppercase !important;
       @include RP(( // "line-height": 55,
@@ -22,52 +23,11 @@
           ), 1);
       }
 
-      &::before {
-        content: "";
-        position: absolute;
-        background: linear-gradient(135deg, #EC1E24 0%, #141212 50%, #902880 100%);
-        background-size: 300% 300%;
-        width: 50%;
-        height: 2px;
-        bottom: -4px;
-        left: 0;
-        z-index: 1;
-        animation: gradient-move 4s linear infinite;
-
-        @media screen and (max-width: 640px) {
-          bottom: -2px;
-        }
-      }
     }
 
-
-  }
-
-  img {
-    @include RP(("height": 36, "width": 36));
-
-    @media screen and (max-width: 640px) {
-      max-width: 15px;
-      max-height: 15px;
+    p {
+      color: $WHITE;
+      margin-top: 10px;
     }
-  }
-
-  p {
-    color: $WHITE;
-    margin-top: 10px;
-  }
-}
-
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
   }
 }

@@ -1,0 +1,61 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.sectionContainer {
+    background-color: #23A5910F;
+    @include RP(("padding-top": 80,
+            "padding-bottom": 80,
+        ));
+
+    .customContainer {
+        .contentContainer {
+            .content {
+                @include RP(("padding-top": 30,
+                        "padding-bottom": 30,
+                    ), 1);
+
+                @media screen and (max-width: 767px) {
+                    padding: 0 !important;
+                }
+
+                h2 {
+                    color: $PRIMARY;
+                    @include RP(("font-size": 40,
+                            "line-height": 56,
+                        ), 1);
+
+                    @media screen and (max-width: 640px) {
+                        margin-top: 10px;
+                        @include RP(("font-size": 24,
+                                "line-height": 32,
+                            ), 1);
+                    }
+                }
+
+                p {
+                    color: black !important;
+                }
+
+                svg {
+                    @include RP(("width": 34,
+                            "height": 32,
+                        ), 1);
+
+                    path {
+                        fill: $SECONDARY !important;
+                    }
+                }
+            }
+
+            .imgContainer {
+                img {
+                    border-radius: 8px;
+                    width: 100% !important;
+                    // max-height: 600px !important;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+
+}

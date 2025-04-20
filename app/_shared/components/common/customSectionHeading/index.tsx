@@ -36,16 +36,6 @@ const CustomSectionHeading = ({
           centered ? "items-center" : "items-center"
         )}
       >
-        <span>
-          <Image
-            {...(isDesktop && { "data-aos": "fade-right" })}
-            height={36}
-            width={36}
-            src={Images.Logo}
-            alt="Hayes Media logo"
-            loading="lazy"
-          />
-        </span>
         <h2 {...(isDesktop && { "data-aos": "fade-up" })}>{heading}</h2>
       </div>
       <p {...(isDesktop && { "data-aos": "fade-up" })}>{description}</p>
