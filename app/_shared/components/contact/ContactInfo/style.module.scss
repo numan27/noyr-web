@@ -1,0 +1,102 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.contactInfo {
+    @include RP(("padding": 30));
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    h3 {
+        @include RP(("font-size": 24,
+                "margin-bottom": 12,
+            ));
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+
+    .subtitle {
+        @include RP(("font-size": 16,
+                "margin-bottom": 32,
+            ));
+        color: #666;
+    }
+
+    .infoGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .infoItem {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+
+        .iconWrapper {
+            @include RP(("width": 40,
+                    "height": 40,
+                ));
+            background: #f8f8f8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+
+            svg {
+                @include RP(("width": 20,
+                        "height": 20,
+                    ));
+                color: #1a1a1a;
+            }
+        }
+
+        .content {
+            h4 {
+                @include RP(("font-size": 16,
+                        "margin-bottom": 8,
+                    ));
+                font-weight: 600;
+                color: #1a1a1a;
+            }
+
+            p {
+                @include RP(("font-size": 14,
+                        "margin-bottom": 4,
+                    ));
+                color: #666 !important;
+                line-height: 1.5;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .additionalInfo {
+        @include RP(("margin-top": 40,
+                "padding-top": 32,
+            ));
+        border-top: 1px solid #eee;
+
+        h4 {
+            @include RP(("font-size": 18,
+                    "margin-bottom": 12,
+                ));
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        p {
+            @include RP(("font-size": 14));
+            color: #666 !important;
+            line-height: 1.6;
+        }
+    }
+}

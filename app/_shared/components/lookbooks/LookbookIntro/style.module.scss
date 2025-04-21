@@ -1,0 +1,63 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.introSection {
+    @include RP(("padding": 40,
+            "margin-bottom": 40,
+        ));
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    .content {
+        max-width: 800px;
+        margin: 0 auto;
+        @include RP(("margin-bottom": 40));
+
+        h2 {
+            @include RP(("font-size": 32,
+                    "margin-bottom": 16,
+                ));
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        p {
+            @include RP(("font-size": 16));
+            color: #666;
+            line-height: 1.6;
+        }
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        @include RP(("margin-top": 40));
+
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .statItem {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+
+            .number {
+                @include RP(("font-size": 36));
+                font-weight: 600;
+                color: #1a1a1a;
+            }
+
+            .label {
+                @include RP(("font-size": 14));
+                color: #666;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+        }
+    }
+}

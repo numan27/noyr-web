@@ -42,7 +42,7 @@ const routeConstant = {
     title: "Sales",
   },
   lookbook: {
-    path: "/collections/lookbooks",
+    path: "/general/lookbooks",
     title: "Lookbooks",
   },
   about: {
