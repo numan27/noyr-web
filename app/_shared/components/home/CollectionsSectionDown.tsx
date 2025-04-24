@@ -36,7 +36,8 @@ const CollectionsSectionDown = ({ id }: HomeSectionProps) => {
       name: "Trousers",
       description:
         "Elevate your style with our premium tailored trousers collection.",
-      image: "/bg-12.jpg",
+      image: "/4.jpg",
+      // image: "/bg-12.jpg",
       path: routeConstant.collections.path + "?trousers",
     },
     {
@@ -44,7 +45,7 @@ const CollectionsSectionDown = ({ id }: HomeSectionProps) => {
       name: "Shirts",
       description:
         "Discover our sophisticated shirt collection for every occasion.",
-      image: "/bg-11.jpg",
+      image: "/5.jpg",
       path: routeConstant.collections.path + "?shirts",
     },
   ];

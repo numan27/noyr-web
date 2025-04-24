@@ -5,17 +5,17 @@ const routeConstant = {
     path: "/",
     title: "Home",
   },
-  men: {
-    path: "/collections/men",
-    title: "Men",
+  shirts: {
+    path: "/collections/shirts",
+    title: "Shirts",
   },
-  women: {
-    path: "/collections/women",
-    title: "Women",
+  trousers: {
+    path: "/collections/trousers",
+    title: "Trousers",
   },
-  newArrivals: {
-    path: "/collections/newArrivals",
-    title: "New Arrivals",
+  jeans: {
+    path: "/collections/jeans",
+    title: "Jeans",
   },
   shop: {
     path: "/collections",

@@ -1,105 +1,145 @@
 "use client";
-import classNames from "classnames";
+
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { routeConstant } from "routes/constants";
+import { useCart } from "../../../context/CartContext";
 import styles from "./style.module.scss";
-import { X } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
 
-type CartItem = {
-  id: number;
-  name: string;
-  price: string;
-  size: string;
-  image: StaticImageData;
-  quantity: number;
-};
-
-interface CartSideCanvasProps {
-  isOpen: boolean;
-  setIsOpen: (val: boolean) => void;
-  cartItems?: CartItem[];
-  removeFromCart?: (id: number) => void;
-}
-
-const CartSideCanvas = ({
+export default function CartSideCanvas({
   isOpen,
-  setIsOpen,
-  cartItems = [],
-  removeFromCart,
-}: CartSideCanvasProps) => {
-  const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => {
-      return total + parseFloat(item.price.replace("$", "")) * item.quantity;
-    }, 0);
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  const { cartItems, removeFromCart, updateQuantity, calculateSubtotal } =
+    useCart();
+  const cartRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        cartRef.current &&
+        !cartRef.current.contains(event.target as Node)
+      ) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      // Prevent scrolling on body when cart is open
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      // Restore scrolling when cart is closed
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, onClose]);
+
+  // Prevent clicks inside the cart from closing it
+  const handleCartClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div
-      className={classNames(styles.cartBackDropContainer, "")}
-      style={isOpen ? { visibility: "visible" } : { visibility: "hidden" }}
-    >
+    <>
+      <div className={styles.cartBackDropContainer} />
       <div
-        className={classNames(
-          styles.cartMainContainer,
+        ref={cartRef}
+        className={`${styles.cartMainContainer} ${
           isOpen ? styles.cartShown : styles.cartHidden
-        )}
+        }`}
+        onClick={handleCartClick}
       >
-        <div className="flex justify-between items-center px-4 py-4 border-b border-gray-700">
-          <h3 className="text-white text-lg font-bold">Cart</h3>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="text-white/80 hover:text-white"
-          >
-            <X size={24} />
-          </button>
+        <div className={styles.cartHeader}>
+          <h2>Shopping Cart</h2>
+          <button onClick={onClose}>&times;</button>
         </div>
 
-        <div className="p-4">
+        <div className={styles.cartContent}>
           {cartItems.length === 0 ? (
-            <p className="text-white/80">Your cart is empty.</p>
+            <div className={styles.emptyCart}>
+              <p>Your cart is empty</p>
+            </div>
           ) : (
             <>
-              {cartItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between mb-4"
-                >
-                  <div className="flex items-center">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={60}
-                      height={60}
-                      className="rounded"
-                    />
-                    <div className="ml-4">
-                      <p className="text-white">{item.name}</p>
-                      <p className="text-white/80">{item.size}</p>
-                      <p className="text-white/80">{item.price}</p>
+              <div className={styles.cartItems}>
+                {cartItems.map((item) => (
+                  <div key={item.id} className={styles.cartItem}>
+                    <div className={styles.itemImage}>
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={80}
+                        height={80}
+                      />
                     </div>
+                    <div className={styles.itemDetails}>
+                      <h3>{item.name}</h3>
+                      <p>Size: {item.size}</p>
+                      <p>{item.price}</p>
+                      <div className={styles.quantityControls}>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
+                        >
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <button
+                      className={styles.removeButton}
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
-                  <button
-                    // @ts-ignore
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-white/80 hover:text-white"
-                  >
-                    Remove
-                  </button>
+                ))}
+              </div>
+
+              <div className={styles.cartFooter}>
+                <div className={styles.subtotal}>
+                  <span>Subtotal:</span>
+                  <span>${calculateSubtotal().toFixed(2)}</span>
                 </div>
-              ))}
-              <div className="border-t border-gray-700 pt-4">
-                <p className="text-white">
-                  Subtotal: ${calculateSubtotal().toFixed(2)}
-                </p>
-                <p className="text-white font-bold">
-                  Total: ${calculateSubtotal().toFixed(2)}
-                </p>
+                <div className={styles.cartActions}>
+                  <Link
+                    href="/cart"
+                    className={styles.viewCartButton}
+                    onClick={onClose}
+                  >
+                    View Cart
+                  </Link>
+                  <Link
+                    href="/checkout"
+                    className={styles.checkoutButton}
+                    onClick={onClose}
+                  >
+                    Checkout
+                  </Link>
+                </div>
               </div>
             </>
           )}
         </div>
       </div>
-    </div>
+    </>
   );
-};
-
-export default CartSideCanvas;
+}

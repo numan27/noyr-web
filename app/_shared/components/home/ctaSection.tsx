@@ -34,12 +34,12 @@ const CTASection = ({ id }: HomeSectionProps) => {
       ref={sectionRef}
       className={`${styles.ctaSection} relative h-screen min-h-[700px]`}
       style={{
-        backgroundImage: "url('/bg-7.jpg')",
+        backgroundImage: "url('/1.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="absolute inset-0 bg-black/60"></div>
 
       <div className="container h-full mx-auto px-4 flex flex-col items-center justify-center relative z-10 text-center">
         <div className="max-w-2xl space-y-6">

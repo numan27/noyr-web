@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { Next13ProgressBar } from "next13-progressbar";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
+import { CartProvider } from "./context/CartContext";
 
 const CustomProvider = ({ children }: any) => {
   useEffect(() => {
@@ -22,7 +23,9 @@ const CustomProvider = ({ children }: any) => {
         options={{ showSpinner: false }}
         showOnShallow
       />
-      <CookiesProvider>{children}</CookiesProvider>
+      <CartProvider>
+        <CookiesProvider>{children}</CookiesProvider>
+      </CartProvider>
       <ToastContainer
         position="top-right"
         autoClose={5000}

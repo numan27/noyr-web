@@ -12,7 +12,11 @@ import { Icons, Images } from "assets";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { routeConstant } from "routes/constants";
 
-const Header = () => {
+interface HeaderProps {
+  isLandingPage?: boolean;
+}
+
+const Header = ({ isLandingPage = false }: HeaderProps) => {
   const { width } = useWindowDimensions();
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -63,12 +67,27 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const getHeaderStyle = () => {
+    if (isLandingPage) {
+      return isScrolled ? "glass-navbar bg-white/80" : "bg-transparent";
+    }
+    return "bg-black";
+  };
+
+  const getTextStyle = () => {
+    if (isLandingPage) {
+      return isScrolled ? "text-black/80" : "text-white/90";
+    }
+    return "text-white/90";
+  };
+
   return (
     <header
       className={classNames(
         styles.header,
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        { "glass-navbar py-2": isScrolled, "py-2.5": !isScrolled }
+        getHeaderStyle(),
+        "py-2"
       )}
     >
       <div className="container px-4 mx-auto">
@@ -107,7 +126,7 @@ const Header = () => {
                           )) &&
                           styles.activeLink,
                         "flex items-center uppercase",
-                        { "text-black/80": isScrolled || width < 576 }
+                        getTextStyle()
                       )}
                     >
                       {link.title}
@@ -163,8 +182,8 @@ const Header = () => {
             <div className="flex items-center space-x-5 z-50">
               <button
                 className={classNames(
-                  "text-white/90 hover:text-white transition-colors",
-                  { "text-black/80": isScrolled }
+                  "hover:opacity-80 transition-colors",
+                  getTextStyle()
                 )}
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
               >
@@ -175,8 +194,8 @@ const Header = () => {
             </button> */}
               <button
                 className={classNames(
-                  "text-white/90 hover:text-white transition-colors",
-                  { "text-black/80": isScrolled }
+                  "hover:opacity-80 transition-colors",
+                  getTextStyle()
                 )}
                 onClick={() => setIsCartOpen(!isCartOpen)}
               >
@@ -184,8 +203,8 @@ const Header = () => {
               </button>
               <button
                 className={classNames(
-                  "text-white/90 hover:text-white transition-colors md:hidden",
-                  { "text-black/80": isScrolled }
+                  "hover:opacity-80 transition-colors md:hidden",
+                  getTextStyle()
                 )}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
@@ -259,7 +278,10 @@ const Header = () => {
       /> */}
 
       {/* CartSideCanvas */}
-      <CartSideCanvas isOpen={isCartOpen} setIsOpen={setIsCartOpen} />
+      <CartSideCanvas
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </header>
   );
 };

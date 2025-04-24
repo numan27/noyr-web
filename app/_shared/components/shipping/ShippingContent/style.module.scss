@@ -1,0 +1,108 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.shippingContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: $primary-dark;
+        text-align: center;
+    }
+
+    section {
+        margin-bottom: 4rem;
+    }
+}
+
+.methodsGrid,
+.returnsGrid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    @include respond-to("medium") {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.methodCard,
+.policyCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        color: $primary-dark;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin: 0.5rem 0;
+            color: $text-secondary;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 1.5rem;
+
+            &:before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: $primary;
+            }
+        }
+    }
+
+    p {
+        color: $text-secondary;
+        line-height: 1.6;
+        margin: 0;
+    }
+}
+
+.iconWrapper {
+    width: 48px;
+    height: 48px;
+    background: $primary-light;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        color: $primary;
+    }
+}
+
+.note {
+    background: $background-light;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+
+    p {
+        color: $text-secondary;
+        text-align: center;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+}

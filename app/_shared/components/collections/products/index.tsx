@@ -7,14 +7,15 @@ import { products } from "utils/constants";
 import CartSideCanvas from "components/common/cartSideCanvas";
 import { useRouter, usePathname } from "next/navigation";
 import ProductCard from "../productCard";
+import { useCart } from "../../../context/CartContext";
 
-type SegmentType = "men" | "women" | "new-arrivals" | "all";
+type SegmentType = "shirts" | "trousers" | "jeans" | "all";
 
 const tabs: { id: SegmentType; label: string }[] = [
   { id: "all", label: "All Products" },
-  { id: "new-arrivals", label: "New Arrivals" },
-  { id: "men", label: "Men" },
-  { id: "women", label: "Women" },
+  { id: "shirts", label: "Shirts" },
+  { id: "trousers", label: "Trousers" },
+  { id: "jeans", label: "Jeans" },
 ];
 
 export default function Products() {
@@ -28,14 +29,14 @@ export default function Products() {
   >({});
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     setIsMounted(true);
     // Parse URL params on client side
     const params = new URLSearchParams(window.location.search);
     const segmentParam = params.toString().split("=")[0] || "all";
-    const validSegment: SegmentType = ["men", "women", "new-arrivals"].includes(
+    const validSegment: SegmentType = ["shirts", "trousers", "jeans"].includes(
       segmentParam
     )
       ? (segmentParam as SegmentType)
@@ -52,16 +53,8 @@ export default function Products() {
 
   // Filter products based on active segment
   const filteredProducts = products.filter((product) => {
-    switch (segment) {
-      case "new-arrivals":
-        return product.isNew;
-      case "men":
-        return product.category === "men";
-      case "women":
-        return product.category === "women";
-      default:
-        return true; // 'all' case
-    }
+    if (segment === "all") return true;
+    return product.category === segment;
   });
 
   if (!isMounted) {
@@ -138,17 +131,14 @@ export default function Products() {
                 setSelectedVariations((prev) => ({ ...prev, [id]: size }));
                 const product = products.find((p) => p.id === id);
                 if (product) {
-                  setCartItems((prev) => [
-                    ...prev,
-                    {
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                      size,
-                      image: product.image,
-                      quantity: 1,
-                    },
-                  ]);
+                  addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    size,
+                    image: product.image,
+                    quantity: 1,
+                  });
                   setIsCartOpen(true);
                 }
               }}
@@ -162,11 +152,7 @@ export default function Products() {
 
       <CartSideCanvas
         isOpen={isCartOpen}
-        setIsOpen={setIsCartOpen}
-        cartItems={cartItems}
-        removeFromCart={(id) =>
-          setCartItems((prev) => prev.filter((item) => item.id !== id))
-        }
+        onClose={() => setIsCartOpen(false)}
       />
     </section>
   );

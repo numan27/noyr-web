@@ -1,0 +1,44 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.termsContent {
+    @include RP(("padding": 40));
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    .section {
+        @include RP(("margin-bottom": 40));
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        h3 {
+            @include RP(("font-size": 20,
+                    "margin-bottom": 16,
+                ));
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        p {
+            @include RP(("font-size": 15));
+            color: #666 !important;
+            line-height: 1.6;
+        }
+    }
+
+    .lastUpdated {
+        @include RP(("margin-top": 60,
+                "padding-top": 20,
+            ));
+        border-top: 1px solid #eee;
+
+        p {
+            @include RP(("font-size": 14));
+            color: #999;
+            font-style: italic;
+        }
+    }
+}

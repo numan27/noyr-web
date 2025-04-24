@@ -1,0 +1,107 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.pageWrapper {
+    background-color: #fafafa;
+    @include RP(("padding-top": 100,
+            "padding-bottom": 100,
+        ), 1);
+}
+
+.container {}
+
+.pageHeading {
+    color: #1a202c !important;
+}
+
+.emptyTitle {
+    color: #1a202c !important;
+}
+
+.emptyDescription {
+    color: #718096 !important;
+}
+
+.continueButton {
+    background-color: #1a202c;
+    color: white;
+
+    &:hover {
+        background-color: #2d3748;
+    }
+}
+
+.cartItem {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.itemName {
+    color: #1a202c !important;
+}
+
+.itemDetails {
+    color: #718096 !important;
+}
+
+.itemPrice {
+    color: #1a202c !important;
+}
+
+.qtyButton {
+    background-color: white;
+    color: #1a202c !important;
+    @include RP(("font-size": 24,
+        ), 1);
+}
+
+.removeButton {
+    color: #e53e3e;
+
+    &:hover {
+        color: #c53030 !important;
+    }
+}
+
+.orderSummary {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.orderSummaryTitle {
+    color: #1a202c !important;
+}
+
+.label {
+    color: #718096 !important;
+}
+
+.value {
+    color: #1a202c !important;
+}
+
+.totalLabel,
+.totalValue {
+    color: #1a202c !important;
+}
+
+.checkoutButton {
+    background-color: #1a202c;
+    color: white;
+
+    &:hover {
+        background-color: #2d3748;
+    }
+}
+
+.continueLink {
+    color: #4a5568 !important;
+    transition: all 0.3s ease-in-out !important;
+
+    &:hover {
+        text-decoration: underline !important;
+        color: #2d3748 !important;
+    }
+}

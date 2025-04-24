@@ -4,8 +4,6 @@ import classNames from "classnames";
 import styles from "./style.module.scss";
 import HeroSection from "./HeroSection";
 import CollectionsSection from "./CollectionsSection";
-import FeaturedSection from "./FeaturedSection";
-import CategorySection from "./ctaSection";
 import { useEffect } from "react";
 import VerticalNavbar from "./verticalNav";
 import ProductsSection from "./productsSection";

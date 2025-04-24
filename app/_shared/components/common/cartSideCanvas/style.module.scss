@@ -3,13 +3,13 @@
 
 .cartBackDropContainer {
   height: 100vh;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
-  z-index: 400;
-  padding: 0px !important;
-  transition: visibility 0.2s;
+  left: 0;
+  z-index: 999;
+  transition: opacity 0.3s ease-in-out;
   overflow: hidden !important;
 }
 
@@ -17,14 +17,14 @@
   background-color: $BLACK;
   max-width: 400px;
   width: 100%;
-  height: 100%;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 0px !important;
+  height: 100vh;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease-in-out;
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 1000;
   overflow-x: hidden;
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
@@ -36,8 +36,205 @@
 
 .cartHidden {
   transform: translateX(100%);
+  visibility: hidden;
 }
 
 .cartShown {
   transform: translateX(0);
+  visibility: visible;
+}
+
+.cartSidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100vh;
+  background-color: #1a1a1a;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+
+  &.open {
+    right: 0;
+  }
+}
+
+.cartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  background-color: $BLACK;
+  z-index: 2;
+
+  h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  button {
+    color: #fff;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: opacity 0.2s;
+    line-height: 1;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.cartContent {
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.emptyCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.cartItems {
+  margin-bottom: 2rem;
+}
+
+.cartItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid #333;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.itemImage {
+  flex-shrink: 0;
+  margin-right: 1rem;
+
+  img {
+    border-radius: 4px;
+    object-fit: cover;
+  }
+}
+
+.itemDetails {
+  flex-grow: 1;
+  color: #fff;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #444;
+    }
+  }
+
+  span {
+    color: #fff;
+    min-width: 24px;
+    text-align: center;
+  }
+}
+
+.removeButton {
+  color: #ff4444;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.cartFooter {
+  position: sticky;
+  bottom: 0;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-top: 1px solid #333;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cartActions {
+  display: flex;
+  gap: 1rem;
+
+  a {
+    flex: 1;
+    padding: 0.75rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.viewCartButton {
+  background-color: #333;
+  color: #fff;
+}
+
+.checkoutButton {
+  background-color: #fff;
+  color: #000;
 }

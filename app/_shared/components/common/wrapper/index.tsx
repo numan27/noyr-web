@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-// import Footer from "../footer";
-// import Header from "../header";
 import AOS from "aos";
 import Footer from "../Footer";
 import Header from "../header";
 
-const Wrapper = ({ children, user }: any) => {
+interface WrapperProps {
+  children: React.ReactNode;
+  isLandingPage?: boolean;
+}
+
+const Wrapper = ({ children, isLandingPage = false }: WrapperProps) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      // offset: 200,
       easing: "ease-in-out",
       once: false,
       mirror: true,
@@ -20,9 +22,8 @@ const Wrapper = ({ children, user }: any) => {
 
   return (
     <>
-      {/* <Header userCookie={user} /> */}
-      <Header />
-      <main className="">{children}</main>
+      <Header isLandingPage={isLandingPage} />
+      <main>{children}</main>
       <Footer />
     </>
   );

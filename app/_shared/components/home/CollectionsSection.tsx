@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
 import CustomButton from "components/common/customButton";
+import { Images } from "assets/images";
 
 interface HomeSectionProps {
   id: string;
@@ -38,14 +39,15 @@ const CollectionsSection = ({ id }: HomeSectionProps) => {
       id: 1,
       name: "T-Shirts",
       description: "Discover our comfortable and stylish t-shirt collection.",
-      image: "/bg-2-flipped.png",
+      // image: "/bg-2-flipped.png",
+      image: "/3.jpg",
       path: routeConstant.collections.path + "?t-shirts",
     },
     {
       id: 2,
       name: "Jeans",
       description: "Premium quality jeans for every style and occasion.",
-      image: "/bg-jeans.jpg",
+      image: "/2.jpg",
       path: routeConstant.collections.path + "?jeans",
     },
   ];
