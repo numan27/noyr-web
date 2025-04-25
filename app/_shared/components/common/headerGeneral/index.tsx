@@ -251,7 +251,10 @@ const HeaderCollections = () => {
       /> */}
 
       {/* CartSideCanvas */}
-      <CartSideCanvas isOpen={isCartOpen} setIsOpen={setIsCartOpen} />
+      <CartSideCanvas
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </header>
   );
 };

@@ -55,7 +55,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ settings, children }) => {
           className={`${styles.arrowButton} ${styles.prevArrow}`}
           onClick={handlePrev}
         >
-          <Image src={Images.SliderArrowLeft} alt="icon" />
+          {/* <Image src={Images.SliderArrowLeft} alt="icon" /> */}
         </div>
 
         {/* Dots */}
@@ -82,7 +82,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ settings, children }) => {
           className={`${styles.arrowButton} ${styles.nextArrow}`}
           onClick={handleNext}
         >
-          <Image src={Images.SliderArrowRight} alt="icon" />
+          {/* <Image src={Images.SliderArrowRight} alt="icon" /> */}
         </div>
       </div>
     </div>

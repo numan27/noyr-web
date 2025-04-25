@@ -97,7 +97,6 @@ import RoundedShapedRectangle4 from "./rounded-shape-4.svg";
 import GradientGridBox from "./gradient-grid-shape.svg";
 import CheckBullet from "./check-bullet.svg";
 import Bullet from "./bullet.svg";
-import GradientLineX from "./line-x.svg";
 
 const Icons = {
   ArrowRight,
@@ -199,7 +198,6 @@ const Icons = {
   GradientGridBox,
   CheckBullet,
   Bullet,
-  GradientLineX,
 };
 
 export { Icons };

@@ -184,9 +184,7 @@ export default function ProductDetail({ params }: PageProps) {
 
       <CartSideCanvas
         isOpen={isCartOpen}
-        setIsOpen={setIsCartOpen}
-        cartItems={cartItems}
-        removeFromCart={removeFromCart}
+        onClose={() => setIsCartOpen(false)}
       />
     </>
   );
