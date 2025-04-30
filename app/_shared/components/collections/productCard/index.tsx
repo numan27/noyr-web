@@ -4,6 +4,14 @@ import classNames from "classnames";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
 
+// Add slug generation function
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+};
+
 type ProductCardProps = {
   product: {
     id: string;
@@ -39,7 +47,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className={styles.productCard}>
       <div className={styles.productImageContainer}>
         <Link
-          href={routeConstant.productDetail.path.replace(":id", product.id)}
+          href={routeConstant.productDetail.path.replace(
+            ":slug",
+            generateSlug(product.name)
+          )}
         >
           {/* Main product image */}
           <div className={styles.imageWrapper}>

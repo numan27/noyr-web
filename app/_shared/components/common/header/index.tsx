@@ -6,7 +6,7 @@ import Link from "next/link";
 import classNames from "classnames";
 import styles from "./style.module.scss";
 import { headerLinks } from "utils/constants";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Icons, Images } from "assets";
 import useWindowDimensions from "hooks/useWindowDimensions";
@@ -17,6 +17,7 @@ interface HeaderProps {
 }
 
 const Header = ({ isLandingPage = false }: HeaderProps) => {
+  const router = useRouter();
   const { width } = useWindowDimensions();
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,9 +25,11 @@ const Header = ({ isLandingPage = false }: HeaderProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   const cartRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +83,25 @@ const Header = ({ isLandingPage = false }: HeaderProps) => {
     }
     return "text-white/90";
   };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(
+        `${routeConstant.searchResults.path}?q=${encodeURIComponent(
+          searchQuery.trim()
+        )}`
+      );
+      setIsSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
 
   return (
     <header
@@ -247,23 +269,23 @@ const Header = ({ isLandingPage = false }: HeaderProps) => {
             "fixed top-20 left-0 right-0 bg-black p-4 shadow-lg"
           )}
         >
-          <div className="container mx-auto flex items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              className={classNames(
-                styles.searchInput,
-                "w-full p-2 rounded bg-gray-800 text-white focus:outline-none"
-              )}
-            />
-            <button
-              className={classNames(
-                styles.searchButton,
-                "ml-2 p-2 rounded bg-gray-700 hover:bg-gray-600 transition-colors"
-              )}
-            >
-              <ArrowRight size={20} className="text-white" />
-            </button>
+          <div className="container mx-auto">
+            <form onSubmit={handleSearch} className="flex items-center">
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search products..."
+                className="flex-1 bg-transparent text-white border-b border-white/30 focus:border-white outline-none py-2 px-4"
+              />
+              <button
+                type="submit"
+                className="text-white hover:text-white/80 transition-colors ml-4"
+              >
+                <Search size={20} />
+              </button>
+            </form>
           </div>
         </div>
       )}

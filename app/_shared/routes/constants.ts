@@ -34,7 +34,7 @@ const routeConstant = {
     title: "Collections",
   },
   productDetail: {
-    path: "/collections/:id",
+    path: "/collections/:slug",
     title: "Collections",
   },
   sales: {
@@ -64,6 +64,10 @@ const routeConstant = {
   shippingAndReturns: {
     path: "/general/shipping-and-returns",
     title: "Shipping and Returns",
+  },
+  searchResults: {
+    path: "/general/search-results",
+    title: "Search Results",
   },
 };
 

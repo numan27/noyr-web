@@ -25,6 +25,7 @@ type Product = {
   color: string;
   colorsAvailable: string;
   image: StaticImageData;
+  images?: StaticImageData[];
   category?: string;
   isNew?: boolean;
   description?: string;
@@ -35,27 +36,38 @@ type Product = {
   modelInfo: string;
 };
 
+// Add slug generation function
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+};
+
 // Updated to match Next.js 15+ async params
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export default function ProductDetail({ params }: PageProps) {
-  const { id } = use(params);
+  const { slug } = use(params);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<StaticImageData | null>(
+    null
+  );
 
-  const product = products.find((p) => {
-    if (typeof p.id === "number") {
-      return p.id === Number(id);
-    }
-    return p.id === id;
-  });
+  const product = products.find((p) => generateSlug(p.name) === slug);
 
   if (!product) {
     return notFound();
   }
+
+  // Set initial selected image
+  React.useEffect(() => {
+    setSelectedImage(product.image);
+  }, [product.image]);
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -86,13 +98,54 @@ export default function ProductDetail({ params }: PageProps) {
       <div className={classNames(styles.cardContainer, "mx-auto px-4 py-12")}>
         <div className={classNames(styles.customContainer)}>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative aspect-square">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover rounded-lg"
-              />
+            <div className="space-y-4">
+              <div className="relative aspect-square">
+                <Image
+                  src={selectedImage || product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
+
+              {/* Thumbnails */}
+              {product.images && product.images.length > 0 && (
+                <div className="grid grid-cols-4 gap-2">
+                  <button
+                    onClick={() => setSelectedImage(product.image)}
+                    className={classNames(
+                      "relative aspect-square rounded-md overflow-hidden",
+                      selectedImage === product.image
+                        ? "ring-2 ring-gray-900"
+                        : ""
+                    )}
+                  >
+                    <Image
+                      src={product.image}
+                      alt={`${product.name} - Main`}
+                      fill
+                      className="object-cover"
+                    />
+                  </button>
+                  {product.images.map((img, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(img)}
+                      className={classNames(
+                        "relative aspect-square rounded-md overflow-hidden",
+                        selectedImage === img ? "ring-2 ring-gray-900" : ""
+                      )}
+                    >
+                      <Image
+                        src={img}
+                        alt={`${product.name} - ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="space-y-6 text-gray-900">

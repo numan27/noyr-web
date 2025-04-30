@@ -52,16 +52,91 @@ import SampleImg4 from "./sample-4.png";
 import SampleImg5 from "./sample-5.png";
 import SampleImg6 from "./sample-6.png";
 import SampleImg7 from "./sample-7.png";
-import Product1 from "./product-1.jpeg";
-import Product2 from "./product-2.jpeg";
-import Product3 from "./product-3.jpeg";
-import Product4 from "./product-4.jpeg";
 import BannerImg1 from "./1.jpg";
 import BannerImg2 from "./2.jpg";
 import BannerImg3 from "./3.jpg";
 import BannerImg4 from "./4.jpg";
 import BannerImg5 from "./5.jpg";
-
+import Cat1_P1_Collection_1 from "./c1_p1_collection_1.jpg";
+import Cat1_P1_Collection_2 from "./c1_p1_collection_2.jpg";
+import Cat1_P2_Collection_1 from "./c1_p2_collection_1.jpg";
+import Cat1_P2_Collection_2 from "./c1_p2_collection_2.jpg";
+import Cat1_P3_Collection_1 from "./c1_p3_collection_1.jpg";
+import Cat1_P3_Collection_2 from "./c1_p3_collection_2.jpg";
+import Cat1_P4_Collection_1 from "./c1_p4_collection_1.jpg";
+import Cat1_P4_Collection_2 from "./c1_p4_collection_2.jpg";
+import Cat1_P5_Collection_1 from "./c1_p5_collection_1.jpg";
+import Cat1_P5_Collection_2 from "./c1_p5_collection_2.jpg";
+import Cat1_P6_Collection_1 from "./c1_p6_collection_1.jpg";
+import Cat1_P6_Collection_2 from "./c1_p6_collection_2.jpg";
+import Cat1_P7_Collection_1 from "./c1_p7_collection_1.jpg";
+import Cat1_P7_Collection_2 from "./c1_p7_collection_2.jpg";
+import Cat2_P1_Collection_1 from "./c2_p1_collection_1.jpg";
+import Cat2_P1_Collection_2 from "./c2_p1_collection_2.jpg";
+import Cat2_P2_Collection_1 from "./c2_p2_collection_1.jpg";
+import Cat2_P2_Collection_2 from "./c2_p2_collection_2.jpg";
+import Cat2_P3_Collection_1 from "./c2_p3_collection_1.jpg";
+import Cat2_P3_Collection_2 from "./c2_p3_collection_2.jpg";
+import Cat2_P4_Collection_1 from "./c2_p4_collection_1.jpg";
+import Cat2_P4_Collection_2 from "./c2_p4_collection_2.jpg";
+import Cat2_P5_Collection_1 from "./c2_p5_collection_1.jpg";
+import Cat2_P5_Collection_2 from "./c2_p5_collection_2.jpg";
+import Cat3_P1_Collection_1 from "./c3_p1_collection_1.jpg";
+import Cat3_P1_Collection_2 from "./c3_p1_collection_2.jpg";
+import Cat3_P2_Collection_1 from "./c3_p2_collection_1.jpg";
+import Cat3_P2_Collection_2 from "./c3_p2_collection_2.jpg";
+import Shirts_Product1_1 from "./shirts_product1_1.jpg";
+import Shirts_Product1_2 from "./shirts_product1_2.jpg";
+import Shirts_Product1_3 from "./shirts_product1_3.jpg";
+import Shirts_Product1_4 from "./shirts_product1_4.jpg";
+import Shirts_Product2_1 from "./shirts_product2_1.jpg";
+import Shirts_Product2_2 from "./shirts_product2_2.jpg";
+import Shirts_Product2_3 from "./shirts_product2_3.jpg";
+import Shirts_Product2_4 from "./shirts_product2_4.jpg";
+import Shirts_Product3_1 from "./shirts_product3_1.jpg";
+import Shirts_Product3_2 from "./shirts_product3_2.jpg";
+import Shirts_Product3_3 from "./shirts_product3_3.jpg";
+import Shirts_Product3_4 from "./shirts_product3_4.jpg";
+import Shirts_Product4_1 from "./shirts_product4_1.jpg";
+import Shirts_Product4_2 from "./shirts_product4_2.jpg";
+import Shirts_Product4_3 from "./shirts_product4_3.jpg";
+import Shirts_Product4_4 from "./shirts_product4_4.jpg";
+import Shirts_Product5_1 from "./shirts_product5_1.jpg";
+import Shirts_Product5_2 from "./shirts_product5_2.jpg";
+import Shirts_Product5_3 from "./shirts_product5_3.jpg";
+import Shirts_Product5_4 from "./shirts_product5_4.jpg";
+import Shirts_Product6_1 from "./shirts_product6_1.jpg";
+import Shirts_Product6_2 from "./shirts_product6_2.jpg";
+import Shirts_Product6_3 from "./shirts_product6_3.jpg";
+import Shirts_Product6_4 from "./shirts_product6_4.jpg";
+import Shirts_Product7_1 from "./shirts_product7_1.jpg";
+import Shirts_Product7_2 from "./shirts_product7_2.jpg";
+import Shirts_Product7_3 from "./shirts_product7_3.jpg";
+import Shirts_Product7_4 from "./shirts_product7_4.jpg";
+import Trousers_Product1_1 from "./trousers_product1_1.jpg";
+import Trousers_Product1_2 from "./trousers_product1_2.jpg";
+import Trousers_Product1_3 from "./trousers_product1_3.jpg";
+import Trousers_Product1_4 from "./trousers_product1_4.jpg";
+import Trousers_Product2_1 from "./trousers_product2_1.jpg";
+import Trousers_Product2_2 from "./trousers_product2_2.jpg";
+import Trousers_Product2_3 from "./trousers_product2_3.jpg";
+import Trousers_Product2_4 from "./trousers_product2_4.jpg";
+import Trousers_Product3_1 from "./trousers_product3_1.jpg";
+import Trousers_Product3_2 from "./trousers_product3_2.jpg";
+import Trousers_Product3_3 from "./trousers_product3_3.jpg";
+import Trousers_Product3_4 from "./trousers_product3_4.jpg";
+import Trousers_Product4_1 from "./trousers_product4_1.jpg";
+import Trousers_Product4_2 from "./trousers_product4_2.jpg";
+import Trousers_Product4_3 from "./trousers_product4_3.jpg";
+import Trousers_Product4_4 from "./trousers_product4_4.jpg";
+import Trousers_Product5_1 from "./trousers_product5_1.jpg";
+import Trousers_Product5_2 from "./trousers_product5_2.jpg";
+import Trousers_Product5_3 from "./trousers_product5_3.jpg";
+import Trousers_Product5_4 from "./trousers_product5_4.jpg";
+import Jeans_Product1_1 from "./jeans_product1_1.jpg";
+import Jeans_Product1_2 from "./jeans_product1_2.jpg";
+import Jeans_Product2_1 from "./jeans_product2_1.jpg";
+import Jeans_Product2_2 from "./jeans_product2_2.jpg";
 const Images = {
   Logo,
   LogoDashboard,
@@ -117,15 +192,91 @@ const Images = {
   SampleImg5,
   SampleImg6,
   SampleImg7,
-  Product1,
-  Product2,
-  Product3,
-  Product4,
   BannerImg1,
   BannerImg2,
   BannerImg3,
   BannerImg4,
   BannerImg5,
+  Cat1_P1_Collection_1,
+  Cat1_P1_Collection_2,
+  Cat1_P2_Collection_1,
+  Cat1_P2_Collection_2,
+  Cat1_P3_Collection_1,
+  Cat1_P3_Collection_2,
+  Cat1_P4_Collection_1,
+  Cat1_P4_Collection_2,
+  Cat1_P5_Collection_1,
+  Cat1_P5_Collection_2,
+  Cat1_P6_Collection_1,
+  Cat1_P6_Collection_2,
+  Cat1_P7_Collection_1,
+  Cat1_P7_Collection_2,
+  Cat2_P1_Collection_1,
+  Cat2_P1_Collection_2,
+  Cat2_P2_Collection_1,
+  Cat2_P2_Collection_2,
+  Cat2_P3_Collection_1,
+  Cat2_P3_Collection_2,
+  Cat2_P4_Collection_1,
+  Cat2_P4_Collection_2,
+  Cat2_P5_Collection_1,
+  Cat2_P5_Collection_2,
+  Cat3_P1_Collection_1,
+  Cat3_P1_Collection_2,
+  Cat3_P2_Collection_1,
+  Cat3_P2_Collection_2,
+  Shirts_Product1_1,
+  Shirts_Product1_2,
+  Shirts_Product1_3,
+  Shirts_Product1_4,
+  Shirts_Product2_1,
+  Shirts_Product2_2,
+  Shirts_Product2_3,
+  Shirts_Product2_4,
+  Shirts_Product3_1,
+  Shirts_Product3_2,
+  Shirts_Product3_3,
+  Shirts_Product3_4,
+  Shirts_Product4_1,
+  Shirts_Product4_2,
+  Shirts_Product4_3,
+  Shirts_Product4_4,
+  Shirts_Product5_1,
+  Shirts_Product5_2,
+  Shirts_Product5_3,
+  Shirts_Product5_4,
+  Shirts_Product6_1,
+  Shirts_Product6_2,
+  Shirts_Product6_3,
+  Shirts_Product6_4,
+  Shirts_Product7_1,
+  Shirts_Product7_2,
+  Shirts_Product7_3,
+  Shirts_Product7_4,
+  Trousers_Product1_1,
+  Trousers_Product1_2,
+  Trousers_Product1_3,
+  Trousers_Product1_4,
+  Trousers_Product2_1,
+  Trousers_Product2_2,
+  Trousers_Product2_3,
+  Trousers_Product2_4,
+  Trousers_Product3_1,
+  Trousers_Product3_2,
+  Trousers_Product3_3,
+  Trousers_Product3_4,
+  Trousers_Product4_1,
+  Trousers_Product4_2,
+  Trousers_Product4_3,
+  Trousers_Product4_4,
+  Trousers_Product5_1,
+  Trousers_Product5_2,
+  Trousers_Product5_3,
+  Trousers_Product5_4,
+  Jeans_Product1_1,
+  Jeans_Product1_2,
+  Jeans_Product2_1,
+  Jeans_Product2_2,
 };
 
 export { Images };

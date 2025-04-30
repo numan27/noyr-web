@@ -14,29 +14,41 @@ import ScrollToTop from "components/common/scrollToTop";
 import WhatsAppCTA from "components/common/whatsAppCTA";
 
 export const metadata: Metadata = {
-  title: "Noyr",
-  description: "",
+  title: "Noyr - Premium Contemporary Fashion",
+  description:
+    "Discover Noyr's premium collection of contemporary fashion. Shop our curated selection of shirts, trousers, and jeans designed for modern style and comfort.",
+  keywords:
+    "Noyr, fashion, clothing, shirts, trousers, jeans, contemporary style, premium fashion",
   openGraph: {
-    title: "Noyr",
-    description: "",
+    title: "Noyr - Premium Contemporary Fashion",
+    description:
+      "Discover Noyr's premium collection of contemporary fashion. Shop our curated selection of shirts, trousers, and jeans designed for modern style and comfort.",
     url: "https://noyr.store",
     siteName: "Noyr Store",
-    // images: [
-    //   {
-    //     url: "https://hayesmediaco.com/fav.webp",
-    //     width: 625,
-    //     height: 625,
-    //     alt: "Hayes Media",
-    //   },
-    // ],
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Noyr Store - Premium Contemporary Fashion",
+      },
+    ],
     type: "website",
   },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: "Noyr",
-  //   description: "",
-  //   images: ["https://hayesmediaco.com/fav.webp"],
-  // },
+  twitter: {
+    card: "summary_large_image",
+    title: "Noyr - Premium Contemporary Fashion",
+    description:
+      "Discover Noyr's premium collection of contemporary fashion. Shop our curated selection of shirts, trousers, and jeans designed for modern style and comfort.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://noyr.store",
+  },
 };
 
 const raleway = Raleway({

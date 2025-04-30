@@ -160,6 +160,7 @@
     border-radius: 8px;
     background: $DARK;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-out;
 
     .searchInput {
       width: calc(100% - 48px);
@@ -186,6 +187,18 @@
       &:hover {
         opacity: 0.9;
       }
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 

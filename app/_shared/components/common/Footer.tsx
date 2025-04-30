@@ -17,13 +17,13 @@ const Footer: React.FC = () => {
     {
       title: "Shop",
       links: [
-        { label: "Men", href: routeConstant.collections.path + "?men" },
-        { label: "Women", href: routeConstant.collections.path + "?women" },
+        { label: "Shirts", href: routeConstant.collections.path + "?shirts" },
         {
-          label: "New Arrivals",
-          href: routeConstant.collections.path + "?new-arrivals",
+          label: "Trousers",
+          href: routeConstant.collections.path + "?trousers",
         },
-        { label: "Lookbooks", href: routeConstant.lookbook.path },
+        { label: "Jeans", href: routeConstant.collections.path + "?jeans" },
+        { label: "All Products", href: routeConstant.collections.path },
       ],
     },
     {
@@ -112,12 +112,12 @@ const Footer: React.FC = () => {
             <h4 className="text-lg text-white font-medium mb-4">
               Share Your Experience
             </h4>
-            <p className="mb-4">
+            <p className="mb-4 text-left">
               We value your feedback! Rate your shopping experience with us.
             </p>
 
             <div className="mb-4">
-              <p className="text-sm text-white/70 mb-2">
+              <p className="text-sm text-white/70 mb-2 text-left">
                 How would you rate us?
               </p>
               <div className="flex space-x-1">

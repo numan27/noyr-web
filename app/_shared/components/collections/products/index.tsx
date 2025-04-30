@@ -57,6 +57,12 @@ export default function Products() {
     return product.category === segment;
   });
 
+  // Randomize products when "all" segment is selected
+  const displayProducts =
+    segment === "all"
+      ? [...filteredProducts].sort(() => Math.random() - 0.5)
+      : filteredProducts;
+
   if (!isMounted) {
     // Return a skeleton loader or null during SSR/prerendering
     return (
@@ -122,7 +128,7 @@ export default function Products() {
             "grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-0.5"
           )}
         >
-          {filteredProducts.map((product) => (
+          {displayProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

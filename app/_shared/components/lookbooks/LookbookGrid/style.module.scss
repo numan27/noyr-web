@@ -1,74 +1,318 @@
 @import "utils/responsive.module.scss";
 @import "utils/colors.scss";
 
-.lookbookGrid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 2rem;
-    @include RP(("padding": 30));
+.lookbookContainer {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
 
-    @media (min-width: 640px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (min-width: 1024px) {
-        grid-template-columns: repeat(3, 1fr);
+    p {
+        color: rgba(0, 0, 0, 0.8) !important;
     }
 }
 
-.lookbookItem {
+.heroSection {
+    height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url("/hero-bg.jpg") center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 80px;
+
+    .heroContent {
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: $SECONDARY !important;
+        }
+
+        p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: $SECONDARY !important;
+        }
+    }
+}
+
+.featuredCollections,
+.seasonalLooks,
+.stylingTips {
+    margin-bottom: 100px;
+
+    h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $SECONDARY !important;
+    }
+}
+
+.collectionsGrid,
+.looksGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.collectionItem,
+.lookItem {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
 
     .imageWrapper {
         position: relative;
-        aspect-ratio: 4/5;
-        overflow: hidden;
+        width: 100%;
+        padding-top: 125%;
 
-        .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
+        p {
+            color: $WHITE !important;
         }
+    }
 
-        &:hover {
-            .image {
-                transform: scale(1.05);
-            }
-
-            .overlay {
-                opacity: 1;
-            }
-        }
+    .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .overlay {
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-        padding: 2rem;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         opacity: 0;
         transition: opacity 0.3s ease;
 
+        &:hover {
+            opacity: 1;
+        }
+
         .content {
+            text-align: center;
             color: white;
+            padding: 20px;
+            max-width: 90%;
 
             h3 {
-                @include RP(("font-size": 20,
-                        "margin-bottom": 8,
-                    ));
-                font-weight: 600;
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: rgba(#fff, 0.9) !important;
             }
 
             p {
-                @include RP(("font-size": 14));
-                opacity: 0.9;
+                font-size: 1rem;
+                margin-bottom: 20px;
+                line-height: 1.5;
+                color: rgba(#fff, 0.8) !important;
+            }
+
+            .productGrid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin-top: 20px;
+
+                .productPreview {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 4px;
+                    }
+
+                    span {
+                        font-size: 0.8rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tipsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.tipCard {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $SECONDARY !important;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.5;
+    }
+}
+
+.collectionStats {
+    margin-bottom: 100px;
+    padding: 0 20px;
+
+    h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $SECONDARY !important;
+    }
+
+    .statsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .statCard {
+        background: white;
+        padding: 40px 20px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #000, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+            &::before {
+                opacity: 1;
+            }
+        }
+
+        h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333 !important;
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #666 !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        height: 60vh;
+
+        .heroContent {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .featuredCollections,
+    .seasonalLooks,
+    .stylingTips {
+        h2 {
+            font-size: 2rem;
+            color: $SECONDARY !important;
+        }
+    }
+
+    .collectionsGrid,
+    .looksGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .productGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collectionStats {
+        .statsGrid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .statCard {
+            padding: 30px 15px;
+
+            h3 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1rem;
             }
         }
     }

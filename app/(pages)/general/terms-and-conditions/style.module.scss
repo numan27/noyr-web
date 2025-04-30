@@ -1,0 +1,43 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+
+.content {
+    color: #111827;
+}
+
+.section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .sectionList {
+        @include RP(("font-size": 16,
+                "padding-top": 20,
+            ), 1);
+
+        li {
+            list-style-type: disc;
+            margin-left: 1rem;
+        }
+    }
+}
+
+.sectionTitle {
+    @include RP(("font-size": 20,
+        ), 1);
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.sectionText {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563 !important;
+    text-align: left !important;
+}

@@ -15,9 +15,9 @@ export default function Lookbooks() {
 
       <div className={styles.mainContent}>
         <div className="container mx-auto px-4">
-          <div className={styles.introWrapper}>
+          {/* <div className={styles.introWrapper}>
             <LookbookIntro />
-          </div>
+          </div> */}
 
           <div className={styles.gridWrapper}>
             <LookbookGrid />
