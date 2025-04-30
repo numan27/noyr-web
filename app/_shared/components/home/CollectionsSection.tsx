@@ -4,7 +4,6 @@ import classNames from "classnames";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
 import CustomButton from "components/common/customButton";
-import { Images } from "assets/images";
 
 interface HomeSectionProps {
   id: string;
@@ -34,24 +33,6 @@ const CollectionsSection = ({ id }: HomeSectionProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const collections = [
-    {
-      id: 1,
-      name: "T-Shirts",
-      description: "Discover our comfortable and stylish t-shirt collection.",
-      // image: "/bg-2-flipped.png",
-      image: "/3.jpg",
-      path: routeConstant.collections.path + "?t-shirts",
-    },
-    {
-      id: 2,
-      name: "Jeans",
-      description: "Premium quality jeans for every style and occasion.",
-      image: "/2.jpg",
-      path: routeConstant.collections.path + "?jeans",
-    },
-  ];
-
   return (
     <section
       ref={sectionRef}
@@ -62,48 +43,31 @@ const CollectionsSection = ({ id }: HomeSectionProps) => {
       id="collections"
     >
       <div className="w-full h-full">
-        <div className="flex flex-col md:flex-row w-full h-full">
-          {collections.map((collection, index) => (
-            <div
-              key={collection.id}
-              className="w-full md:w-1/2 relative group min-h-[50vh] md:h-full"
-            >
-              <div
-                className="relative h-full overflow-hidden animate-fade-in opacity-0"
-                style={{
-                  animationDelay: `${0.2 * (index + 1)}s`,
-                  backgroundImage: `url(${collection.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="absolute inset-x-0 top-10 p-6 md:p-12 text-white transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
-                  <h3 className="text-2xl md:text-3xl font-serif mb-2">
-                    {collection.name}
-                  </h3>
-                  <p className="text-white/70 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-left">
-                    {collection.description}
-                  </p>
-                </div>
+        <div className="relative h-full overflow-hidden">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url(/3.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          </div>
 
-                {/* Mobile-only button*/}
-                <div className="md:hidden absolute inset-x-0 bottom-10 p-6 text-center">
-                  <Link href={collection.path}>
-                    <CustomButton title="Shop Now" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop-only button */}
-        <div className="hidden md:block py-8 text-center absolute inset-x-0 bottom-10 transform -translate-y-1/2 w-fit mx-auto">
-          <Link href={routeConstant.collections.path}>
-            <CustomButton title="Shop Now" />
-          </Link>
+          <div className="relative h-full flex flex-col justify-center items-center text-center p-6 md:p-12">
+            <h3 className="text-3xl md:text-5xl font-serif mb-4 text-white">
+              Discover Our Collection
+            </h3>
+            <p className="text-white/70 mb-8 max-w-2xl text-lg">
+              Explore our premium selection of fashion essentials, crafted with
+              quality and style in mind.
+            </p>
+            <Link href={routeConstant.collections.path}>
+              <CustomButton title="Shop Now" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

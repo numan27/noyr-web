@@ -5,7 +5,6 @@ import styles from "./style.module.scss";
 import HeroSection from "./HeroSection";
 import CollectionsSection from "./CollectionsSection";
 import { useEffect } from "react";
-import VerticalNavbar from "./verticalNav";
 import ProductsSection from "./productsSection";
 import CollectionsSectionDown from "./CollectionsSectionDown";
 import CTASection from "./ctaSection";
