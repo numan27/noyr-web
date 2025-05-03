@@ -8,8 +8,21 @@ import classNames from "classnames";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
 import CustomButton from "components/common/customButton";
+import { createOrder } from "../../actions/order";
+import { StaticImageData } from "next/image";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type PaymentMethod = "bank_transfer" | "easypaisa" | "jazzcash" | "cod";
+
+type CartItem = {
+  id: number | string;
+  name: string;
+  price: string;
+  size: string;
+  image: StaticImageData;
+  quantity: number;
+};
 
 export default function CheckoutPage() {
   const { cartItems, calculateSubtotal, clearCart } = useCart();
@@ -25,6 +38,7 @@ export default function CheckoutPage() {
     phone: "",
     address: "",
   });
+  const router = useRouter();
 
   const bankDetails = {
     bankName: "HBL Bank",
@@ -57,10 +71,60 @@ export default function CheckoutPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handlePlaceOrder = async () => {
+    if (!cartItems.length) {
+      toast.error("Your cart is empty");
+      return;
+    }
 
-    // Validate customer info
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const orderData = {
+        items: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          size: item.size,
+          quantity: item.quantity,
+        })),
+        customerInfo: {
+          name: customerInfo.name,
+          email: customerInfo.email,
+          phone: customerInfo.phone,
+          address: customerInfo.address,
+        },
+        paymentMethod: selectedPayment,
+        totalAmount: calculateSubtotal(),
+      };
+
+      const result = await createOrder(orderData);
+
+      if (result.success) {
+        // Clear cart
+        clearCart();
+
+        // Show success message
+        toast.success("Order placed successfully!");
+
+        // Set success state to show success message
+        setSuccess(true);
+      } else {
+        toast.error(result.error || "Failed to place order");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      toast.error("Failed to place order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const validateForm = () => {
     if (
       !customerInfo.name ||
       !customerInfo.email ||
@@ -68,70 +132,15 @@ export default function CheckoutPage() {
       !customerInfo.address
     ) {
       setError("Please fill in all customer information fields");
-      return;
-    }
-
-    if (cartItems.length === 0) {
-      setError("Your cart is empty");
-      return;
+      return false;
     }
 
     if (selectedPayment === "bank_transfer" && !receipt) {
       setError("Please upload your payment receipt");
-      return;
+      return false;
     }
 
-    setIsSubmitting(true);
-    setError(null);
-
-    try {
-      const orderData = {
-        items: cartItems,
-        customerInfo,
-        paymentMethod: selectedPayment,
-        totalAmount: calculateSubtotal() + 10, // Including shipping
-      };
-
-      console.log("Sending order data:", orderData);
-
-      const response = await fetch("/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
-
-      console.log("Response status:", response.status);
-      console.log(
-        "Response headers:",
-        Object.fromEntries(response.headers.entries())
-      );
-
-      const text = await response.text();
-      console.log("Response text:", text);
-
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch (parseError) {
-        console.error("Failed to parse response:", parseError);
-        throw new Error("Invalid response from server");
-      }
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to place order");
-      }
-
-      // Clear the cart and show success message
-      clearCart();
-      setSuccess(true);
-    } catch (err) {
-      console.error("Order placement error:", err);
-      setError(err instanceof Error ? err.message : "Failed to place order");
-    } finally {
-      setIsSubmitting(false);
-    }
+    return true;
   };
 
   if (success) {
@@ -165,15 +174,6 @@ export default function CheckoutPage() {
               />
             </Link>
           </div>
-          {/* <button
-            onClick={() => (window.location.href = "/")}
-            className={classNames(
-              styles.continueButton,
-              "px-6 py-3 rounded-md text-white font-medium"
-            )}
-          >
-            Continue Shopping
-          </button> */}
         </div>
       </div>
     );
@@ -444,7 +444,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <button
-                onClick={handleSubmit}
+                onClick={handlePlaceOrder}
                 disabled={isSubmitting}
                 className={classNames(
                   styles.placeOrderButton,
