@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import classNames from "classnames";
 import styles from "./style.module.scss";
 import CartSideCanvas from "components/common/cartSideCanvas";
+import { useCart } from "_shared/context/CartContext";
 
 type CartItem = {
   id: number | string;
@@ -52,11 +53,11 @@ interface PageProps {
 export default function ProductDetail({ params }: PageProps) {
   const { slug } = use(params);
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<StaticImageData | null>(
     null
   );
+  const { addToCart } = useCart();
 
   const product = products.find((p) => generateSlug(p.name) === slug);
 
@@ -84,12 +85,8 @@ export default function ProductDetail({ params }: PageProps) {
       quantity: 1,
     };
 
-    setCartItems((prev) => [...prev, newItem]);
+    addToCart(newItem);
     setIsCartOpen(true);
-  };
-
-  const removeFromCart = (id: number | string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (

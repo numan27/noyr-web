@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useCart } from "../../_shared/context/CartContext";
 import styles from "./style.module.scss";
 import classNames from "classnames";
+import Link from "next/link";
+import { routeConstant } from "routes/constants";
+import CustomButton from "components/common/customButton";
 
 type PaymentMethod = "bank_transfer" | "easypaisa" | "jazzcash" | "cod";
 
@@ -13,9 +16,9 @@ export default function CheckoutPage() {
   const [selectedPayment, setSelectedPayment] =
     useState<PaymentMethod>("bank_transfer");
   const [receipt, setReceipt] = useState<File | null>(null);
-  const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     email: "",
@@ -82,41 +85,14 @@ export default function CheckoutPage() {
     setError(null);
 
     try {
-      let receiptUrl = null;
-      if (receipt) {
-        console.log("Uploading receipt...");
-        const formData = new FormData();
-        formData.append("file", receipt);
-        formData.append("name", receipt.name);
-        formData.append("fileType", receipt.type);
-
-        const uploadResponse = await fetch("/api/upload", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!uploadResponse.ok) {
-          const errorData = await uploadResponse.json();
-          throw new Error(errorData.error || "Failed to upload receipt");
-        }
-
-        const { url } = await uploadResponse.json();
-        console.log("Receipt uploaded successfully:", url);
-        receiptUrl = url;
-      }
-
       const orderData = {
         items: cartItems,
-        customerName: customerInfo.name,
-        customerEmail: customerInfo.email,
-        customerPhone: customerInfo.phone,
-        shippingAddress: customerInfo.address,
+        customerInfo,
         paymentMethod: selectedPayment,
         totalAmount: calculateSubtotal() + 10, // Including shipping
-        receiptUrl,
       };
 
-      console.log("Submitting order:", orderData);
+      console.log("Sending order data:", orderData);
 
       const response = await fetch("/api/orders", {
         method: "POST",
@@ -126,19 +102,30 @@ export default function CheckoutPage() {
         body: JSON.stringify(orderData),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Order submission failed:", errorData);
-        throw new Error(errorData.error || "Failed to place order");
+      console.log("Response status:", response.status);
+      console.log(
+        "Response headers:",
+        Object.fromEntries(response.headers.entries())
+      );
+
+      const text = await response.text();
+      console.log("Response text:", text);
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseError) {
+        console.error("Failed to parse response:", parseError);
+        throw new Error("Invalid response from server");
       }
 
-      const { order } = await response.json();
-      console.log("Order placed successfully:", order);
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to place order");
+      }
 
-      // Clear the cart after successful order
+      // Clear the cart and show success message
       clearCart();
-      // Redirect to order confirmation page
-      window.location.href = `/order-confirmation/${order.id}`;
+      setSuccess(true);
     } catch (err) {
       console.error("Order placement error:", err);
       setError(err instanceof Error ? err.message : "Failed to place order");
@@ -147,16 +134,61 @@ export default function CheckoutPage() {
     }
   };
 
-  return (
-    <div className={classNames("min-h-screen", styles.pageWrapper)}>
+  if (success) {
+    return (
       <div
         className={classNames(
-          "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-          styles.container
+          styles.pageWrapper,
+          "min-h-screen flex items-center justify-center"
+        )}
+      >
+        <div className={classNames(styles.successMessage, "text-center p-8")}>
+          <h3
+            className={classNames(
+              styles.pageHeading,
+              "text-2xl font-bold mb-4"
+            )}
+          >
+            Order Placed Successfully!
+          </h3>
+          <p className={classNames(styles.itemDetails, "mb-2")}>
+            Thank you for your order
+          </p>
+          <p className={classNames(styles.itemDetails, "mb-6")}>
+            Our team will contact you shortly to confirm your order details.
+          </p>
+          <div className="flex justify-center">
+            <Link href={routeConstant.collections.path}>
+              <CustomButton
+                title="Continue Shopping"
+                containerStyle={styles.continueButton}
+              />
+            </Link>
+          </div>
+          {/* <button
+            onClick={() => (window.location.href = "/")}
+            className={classNames(
+              styles.continueButton,
+              "px-6 py-3 rounded-md text-white font-medium"
+            )}
+          >
+            Continue Shopping
+          </button> */}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={classNames(styles.pageWrapper)}>
+      <div
+        className={classNames(
+          styles.container,
+          "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         )}
       >
         <h1
-          className={classNames("text-3xl font-bold mb-8", styles.pageHeading)}
+          className={classNames(styles.pageHeading, "text-3xl font-bold mb-8")}
         >
           Checkout
         </h1>
@@ -164,11 +196,11 @@ export default function CheckoutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Order Summary */}
           <div className="lg:col-span-8">
-            <div className={classNames("p-6 rounded-lg mb-6", styles.card)}>
+            <div className={classNames(styles.card, "p-6 rounded-lg mb-6")}>
               <h2
                 className={classNames(
-                  "text-xl font-semibold mb-4",
-                  styles.sectionTitle
+                  styles.sectionTitle,
+                  "text-xl font-semibold mb-4"
                 )}
               >
                 Order Summary
@@ -177,8 +209,8 @@ export default function CheckoutPage() {
                 <div
                   key={item.id}
                   className={classNames(
-                    "flex items-center mb-4 pb-4 border-b",
-                    styles.cartItem
+                    styles.cartItem,
+                    "flex items-center mb-4 pb-4 border-b"
                   )}
                 >
                   <div className="relative w-20 h-20">
@@ -190,15 +222,17 @@ export default function CheckoutPage() {
                     />
                   </div>
                   <div className="ml-4 flex-1">
-                    <h3 className={classNames("font-medium", styles.itemName)}>
+                    <h3 className={classNames(styles.itemName, "font-medium")}>
                       {item.name}
                     </h3>
-                    <p className={styles.itemDetails}>Size: {item.size}</p>
-                    <p className={styles.itemDetails}>
+                    <p className={classNames(styles.itemDetails)}>
+                      Size: {item.size}
+                    </p>
+                    <p className={classNames(styles.itemDetails)}>
                       Quantity: {item.quantity}
                     </p>
                   </div>
-                  <p className={classNames("font-medium", styles.itemPrice)}>
+                  <p className={classNames(styles.itemPrice, "font-medium")}>
                     {item.price}
                   </p>
                 </div>
@@ -206,57 +240,63 @@ export default function CheckoutPage() {
             </div>
 
             {/* Customer Information Form */}
-            <div className={classNames("p-6 rounded-lg mb-6", styles.card)}>
+            <div className={classNames(styles.card, "p-6 rounded-lg mb-6")}>
               <h2
                 className={classNames(
-                  "text-xl font-semibold mb-4",
-                  styles.sectionTitle
+                  styles.sectionTitle,
+                  "text-xl font-semibold mb-4"
                 )}
               >
                 Customer Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className={styles.formLabel}>Full Name</label>
+                  <label className={classNames(styles.formLabel)}>
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     name="name"
                     value={customerInfo.name}
                     onChange={handleCustomerInfoChange}
-                    className={styles.formInput}
+                    className={classNames(styles.formInput)}
                     required
                   />
                 </div>
                 <div>
-                  <label className={styles.formLabel}>Email</label>
+                  <label className={classNames(styles.formLabel)}>Email</label>
                   <input
                     type="email"
                     name="email"
                     value={customerInfo.email}
                     onChange={handleCustomerInfoChange}
-                    className={styles.formInput}
+                    className={classNames(styles.formInput)}
                     required
                   />
                 </div>
                 <div>
-                  <label className={styles.formLabel}>Phone Number</label>
+                  <label className={classNames(styles.formLabel)}>
+                    Phone Number
+                  </label>
                   <input
                     type="tel"
                     name="phone"
                     value={customerInfo.phone}
                     onChange={handleCustomerInfoChange}
-                    className={styles.formInput}
+                    className={classNames(styles.formInput)}
                     required
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className={styles.formLabel}>Shipping Address</label>
+                  <label className={classNames(styles.formLabel)}>
+                    Shipping Address
+                  </label>
                   <input
                     type="text"
                     name="address"
                     value={customerInfo.address}
                     onChange={handleCustomerInfoChange}
-                    className={styles.formInput}
+                    className={classNames(styles.formInput)}
                     required
                   />
                 </div>
@@ -264,16 +304,15 @@ export default function CheckoutPage() {
             </div>
 
             {/* Payment Methods */}
-            <div className={classNames("p-6 rounded-lg", styles.card)}>
+            <div className={classNames(styles.card, "p-6 rounded-lg")}>
               <h2
                 className={classNames(
-                  "text-xl font-semibold mb-4",
-                  styles.sectionTitle
+                  styles.sectionTitle,
+                  "text-xl font-semibold mb-4"
                 )}
               >
                 Payment Method
               </h2>
-
               <div className="space-y-4">
                 {["bank_transfer", "easypaisa", "jazzcash", "cod"].map(
                   (method) => (
@@ -286,9 +325,9 @@ export default function CheckoutPage() {
                           onChange={(e) =>
                             setSelectedPayment(e.target.value as PaymentMethod)
                           }
-                          className={styles.radioInput}
+                          className={classNames(styles.radioInput)}
                         />
-                        <span className={styles.radioLabel}>
+                        <span className={classNames(styles.radioLabel)}>
                           {method.replace("_", " ")}
                         </span>
                       </label>
@@ -296,16 +335,16 @@ export default function CheckoutPage() {
                       {selectedPayment === method && (
                         <div
                           className={classNames(
-                            "ml-7 mt-2 p-4 rounded",
-                            styles.paymentInfo
+                            styles.paymentInfo,
+                            "ml-7 mt-2 p-4 rounded"
                           )}
                         >
                           {method === "bank_transfer" ? (
                             <>
                               <h3
                                 className={classNames(
-                                  "font-medium mb-2",
-                                  styles.subHeading
+                                  styles.subHeading,
+                                  "font-medium mb-2"
                                 )}
                               >
                                 Bank Details
@@ -316,7 +355,9 @@ export default function CheckoutPage() {
                               <p>IBAN: {bankDetails.iban}</p>
 
                               <div className="mt-4">
-                                <label className={styles.uploadLabel}>
+                                <label
+                                  className={classNames(styles.uploadLabel)}
+                                >
                                   Upload Payment Receipt
                                 </label>
                                 <input
@@ -324,8 +365,8 @@ export default function CheckoutPage() {
                                   accept="image/*"
                                   onChange={handleFileChange}
                                   className={classNames(
-                                    "mt-1 block w-full",
-                                    styles.fileInput
+                                    styles.fileInput,
+                                    "mt-1 block w-full"
                                   )}
                                 />
                               </div>
@@ -333,8 +374,8 @@ export default function CheckoutPage() {
                               <button
                                 onClick={handleWhatsAppShare}
                                 className={classNames(
-                                  "mt-4",
-                                  styles.whatsappButton
+                                  styles.whatsappButton,
+                                  "mt-4"
                                 )}
                               >
                                 Share on WhatsApp
@@ -356,43 +397,48 @@ export default function CheckoutPage() {
 
           {/* Order Total */}
           <div className="lg:col-span-4">
-            <div className={classNames("p-6 sticky top-4", styles.card)}>
+            <div className={classNames(styles.card, "p-6 sticky top-4")}>
               <h2
                 className={classNames(
-                  "text-lg font-medium mb-4",
-                  styles.sectionTitle
+                  styles.sectionTitle,
+                  "text-lg font-medium mb-4"
                 )}
               >
                 Order Total
               </h2>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className={styles.label}>Subtotal</span>
-                  <span className={styles.value}>
+                  <span className={classNames(styles.label)}>Subtotal</span>
+                  <span className={classNames(styles.value)}>
                     PKR {calculateSubtotal().toFixed(2)}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className={styles.label}>Shipping</span>
-                  <span className={styles.value}>PKR 400.00</span>
-                </div>
+                {cartItems.length > 0 && (
+                  <div className="flex justify-between">
+                    <span className={classNames(styles.label)}>Shipping</span>
+                    <span className={classNames(styles.value)}>PKR 400.00</span>
+                  </div>
+                )}
                 <div className="border-t pt-2 mt-2">
                   <div className="flex justify-between">
                     <span
                       className={classNames(
-                        "text-lg font-medium",
-                        styles.totalLabel
+                        styles.totalLabel,
+                        "text-lg font-medium"
                       )}
                     >
                       Total
                     </span>
                     <span
                       className={classNames(
-                        "text-lg font-medium",
-                        styles.totalValue
+                        styles.totalValue,
+                        "text-lg font-medium"
                       )}
                     >
-                      PKR {(calculateSubtotal() + 400).toFixed(2)}
+                      PKR{" "}
+                      {(
+                        calculateSubtotal() + (cartItems.length > 0 ? 400 : 0)
+                      ).toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -401,8 +447,8 @@ export default function CheckoutPage() {
                 onClick={handleSubmit}
                 disabled={isSubmitting}
                 className={classNames(
-                  "w-full mt-6 py-3 rounded-md",
                   styles.placeOrderButton,
+                  "w-full mt-6 py-3 rounded-md",
                   isSubmitting && styles.disabled
                 )}
               >
