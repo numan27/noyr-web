@@ -135,8 +135,13 @@ import Trousers_Product5_3 from "./trousers_product5_3.jpg";
 import Trousers_Product5_4 from "./trousers_product5_4.jpg";
 import Jeans_Product1_1 from "./jeans_product1_1.jpg";
 import Jeans_Product1_2 from "./jeans_product1_2.jpg";
+import Jeans_Product1_3 from "./jeans_product1_3.jpg";
+import Jeans_Product1_4 from "./jeans_product1_4.jpg";
 import Jeans_Product2_1 from "./jeans_product2_1.jpg";
 import Jeans_Product2_2 from "./jeans_product2_2.jpg";
+import Jeans_Product2_3 from "./jeans_product2_3.jpg";
+import Jeans_Product2_4 from "./jeans_product2_4.jpg";
+
 const Images = {
   Logo,
   LogoDashboard,
@@ -275,8 +280,12 @@ const Images = {
   Trousers_Product5_4,
   Jeans_Product1_1,
   Jeans_Product1_2,
+  Jeans_Product1_3,
+  Jeans_Product1_4,
   Jeans_Product2_1,
   Jeans_Product2_2,
+  Jeans_Product2_3,
+  Jeans_Product2_4,
 };
 
 export { Images };

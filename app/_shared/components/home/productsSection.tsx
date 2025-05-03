@@ -7,6 +7,8 @@ import { routeConstant } from "routes/constants";
 import { products } from "utils/constants";
 import { StaticImageData } from "next/image";
 import ProductCard from "components/collections/productCard";
+import CartSideCanvas from "components/common/cartSideCanvas";
+import { useCart } from "_shared/context/CartContext";
 
 interface Product {
   id: string;
@@ -28,6 +30,8 @@ const ProductsSection: React.FC<HomeSectionProps> = ({ id }) => {
   const [selectedVariations, setSelectedVariations] = useState<
     Record<string, string>
   >({});
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const shuffleArray = (array: Product[]): Product[] => {
@@ -48,6 +52,19 @@ const ProductsSection: React.FC<HomeSectionProps> = ({ id }) => {
       ...prev,
       [productId]: size,
     }));
+
+    const product = products.find((p) => p.id === productId);
+    if (product) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        size,
+        image: product.image,
+        quantity: 1,
+      });
+      setIsCartOpen(true);
+    }
   };
 
   const handleMouseEnter = (productId: string) => {
@@ -105,6 +122,11 @@ const ProductsSection: React.FC<HomeSectionProps> = ({ id }) => {
           ))}
         </div>
       </div>
+
+      <CartSideCanvas
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </section>
   );
 };

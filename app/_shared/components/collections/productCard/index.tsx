@@ -4,7 +4,6 @@ import classNames from "classnames";
 import Link from "next/link";
 import { routeConstant } from "routes/constants";
 
-// Add slug generation function
 const generateSlug = (title: string) => {
   return title
     .toLowerCase()
@@ -20,7 +19,7 @@ type ProductCardProps = {
     color: string;
     colorsAvailable: string;
     image: StaticImageData;
-    hoverImage?: StaticImageData; // Add hoverImage to the product type
+    hoverImage?: StaticImageData;
   };
   selectedVariation: string | null;
   onVariationSelect: (productId: string, size: string) => void;
@@ -93,7 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   "flex items-center justify-center"
                 )}
               >
-                {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
+                {["S", "M", "L", "XL"].map((size) => (
                   <button
                     key={size}
                     className={classNames(
@@ -118,7 +117,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className={classNames(styles.productDetails, "text-black")}>
         <h3 className={styles.productName}>{product.name}</h3>
         <p className={classNames(styles.productColor, "text-black")}>
-          {product.color} | {product.colorsAvailable} Colors
+          {product.color}
+          {/* | {product.colorsAvailable} Colors */}
         </p>
         <p className={styles.productPrice}>{product.price}</p>
       </div>

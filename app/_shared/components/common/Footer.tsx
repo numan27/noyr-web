@@ -44,9 +44,15 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: <Instagram size={20} />, href: "#" },
+    {
+      icon: <Instagram size={20} />,
+      href: "https://www.instagram.com/noyr.official_?igsh=MWpza3R5Yjl0enUxdw==",
+    },
     { icon: <Twitter size={20} />, href: "#" },
-    { icon: <Facebook size={20} />, href: "#" },
+    {
+      icon: <Facebook size={20} />,
+      href: "https://www.facebook.com/share/163MsJ4fBR/?mibextid=wwXIfr",
+    },
     { icon: <Youtube size={20} />, href: "#" },
   ];
 

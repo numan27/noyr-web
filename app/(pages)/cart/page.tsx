@@ -144,7 +144,11 @@ export default function CartPage() {
                   <div className="flex justify-between">
                     <span className={styles.label}>Subtotal</span>
                     <span className={styles.value}>
-                      ${calculateSubtotal().toFixed(2)}
+                      PKR{" "}
+                      {calculateSubtotal().toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -167,7 +171,11 @@ export default function CartPage() {
                           styles.totalValue
                         )}
                       >
-                        ${calculateSubtotal().toFixed(2)}
+                        PKR{" "}
+                        {calculateSubtotal().toLocaleString("en-US", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </span>
                     </div>
                   </div>

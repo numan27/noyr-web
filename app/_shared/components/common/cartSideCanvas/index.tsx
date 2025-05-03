@@ -60,7 +60,7 @@ export default function CartSideCanvas({
         onClick={handleCartClick}
       >
         <div className={styles.cartHeader}>
-          <h2>Shopping Cart</h2>
+          <h3>Shopping Cart</h3>
           <button onClick={onClose}>&times;</button>
         </div>
 
@@ -83,7 +83,7 @@ export default function CartSideCanvas({
                       />
                     </div>
                     <div className={styles.itemDetails}>
-                      <h3>{item.name}</h3>
+                      <h5>{item.name}</h5>
                       <p>Size: {item.size}</p>
                       <p>{item.price}</p>
                       <div className={styles.quantityControls}>
@@ -117,7 +117,13 @@ export default function CartSideCanvas({
               <div className={styles.cartFooter}>
                 <div className={styles.subtotal}>
                   <span>Subtotal:</span>
-                  <span>${calculateSubtotal().toFixed(2)}</span>
+                  <span>
+                    PKR{" "}
+                    {calculateSubtotal().toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
                 <div className={styles.cartActions}>
                   <Link

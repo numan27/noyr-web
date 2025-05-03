@@ -93,7 +93,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const calculateSubtotal = () => {
     return cartItems.reduce((total, item) => {
-      return total + parseFloat(item.price.replace("$", "")) * item.quantity;
+      // Remove 'PKR ' prefix and convert to number
+      const price = parseFloat(
+        item.price.replace("PKR ", "").replace(/,/g, "")
+      );
+      return total + price * item.quantity;
     }, 0);
   };
 

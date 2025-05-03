@@ -161,9 +161,9 @@ export default function ProductDetail({ params }: PageProps) {
 
               <div className="border-t border-b border-gray-300 py-4">
                 <p className="text-gray-700">{product.color}</p>
-                <p className="text-gray-700">
+                {/* <p className="text-gray-700">
                   {product.colorsAvailable} Colors Available
-                </p>
+                </p> */}
               </div>
 
               {product.description && (
@@ -175,22 +175,20 @@ export default function ProductDetail({ params }: PageProps) {
               <div className="space-y-2">
                 <h3 className="font-medium text-gray-900">Select Size</h3>
                 <div className="flex flex-wrap gap-2">
-                  {(product.sizes || ["XS", "S", "M", "L", "XL", "XXL"]).map(
-                    (size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={classNames(
-                          "w-12 h-12 border rounded-md flex items-center justify-center transition-colors",
-                          selectedSize === size
-                            ? "bg-gray-900 text-white border-gray-900"
-                            : "border-gray-300 text-gray-800 hover:bg-gray-100"
-                        )}
-                      >
-                        {size}
-                      </button>
-                    )
-                  )}
+                  {(product.sizes || ["S", "M", "L", "XL"]).map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={classNames(
+                        "w-12 h-12 border rounded-md flex items-center justify-center transition-colors",
+                        selectedSize === size
+                          ? "bg-gray-900 text-white border-gray-900"
+                          : "border-gray-300 text-gray-800 hover:bg-gray-100"
+                      )}
+                    >
+                      {size}
+                    </button>
+                  ))}
                 </div>
               </div>
 

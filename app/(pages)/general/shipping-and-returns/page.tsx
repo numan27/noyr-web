@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./style.module.scss";
 import ShippingContent from "components/shipping/ShippingContent";
-import HeroBanner from "components/common/HeroBanner";
+import HeroSection from "components/collections/heroSection";
 
 export const metadata = {
   title: "Shipping & Returns | NOYR",
@@ -17,10 +17,9 @@ export default function ShippingPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       > */}
-      <HeroBanner
+      <HeroSection
         title="Shipping & Returns"
-        description="Learn about our shipping methods and return policies"
-        imagePath="/images/shipping-banner.jpg"
+        desc="Learn about our shipping methods and return policies"
       />
       <div>
         <header className={styles.pageHeader}>

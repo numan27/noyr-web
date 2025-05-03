@@ -21,6 +21,7 @@ const tabs: { id: SegmentType; label: string }[] = [
 export default function Products() {
   const [isMounted, setIsMounted] = useState(false);
   const [segment, setSegment] = useState<SegmentType>("all");
+  const [randomizedProducts, setRandomizedProducts] = useState(products);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -42,29 +43,27 @@ export default function Products() {
       ? (segmentParam as SegmentType)
       : "all";
     setSegment(validSegment);
+
+    // Shuffle products only once when component mounts
+    const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
+    setRandomizedProducts(shuffledProducts);
   }, []);
 
-  // Update URL when tab changes
   const handleTabChange = (newSegment: SegmentType) => {
     setSegment(newSegment);
     const param = newSegment === "all" ? "" : `?${newSegment}`;
     router.push(`${pathname}${param}`);
   };
 
-  // Filter products based on active segment
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = randomizedProducts.filter((product) => {
     if (segment === "all") return true;
     return product.category === segment;
   });
 
-  // Randomize products when "all" segment is selected
   const displayProducts =
-    segment === "all"
-      ? [...filteredProducts].sort(() => Math.random() - 0.5)
-      : filteredProducts;
+    segment === "all" ? filteredProducts : filteredProducts;
 
   if (!isMounted) {
-    // Return a skeleton loader or null during SSR/prerendering
     return (
       <section className={styles.sectionContainer}>
         <div className={styles.customContainer}>

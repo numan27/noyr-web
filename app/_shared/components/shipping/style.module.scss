@@ -81,7 +81,7 @@
     svg {
         width: 24px;
         height: 24px;
-        color: #0066cc;
+        color: $PRIMARY;
     }
 }
 
@@ -91,7 +91,7 @@
 
 .price {
     font-weight: 600;
-    color: #0066cc !important;
+    color: $SECONDARY !important;
 }
 
 .note {
@@ -109,7 +109,7 @@
     }
 
     ul {
-        list-style-type: none;
+        list-style-type: disc;
         padding: 0;
         margin: 0;
 
@@ -118,15 +118,9 @@
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
+            padding-left: 1rem;
             position: relative;
 
-            &:before {
-                content: "•";
-                color: #0066cc;
-                position: absolute;
-                left: 0;
-            }
 
             &:last-child {
                 margin-bottom: 0;

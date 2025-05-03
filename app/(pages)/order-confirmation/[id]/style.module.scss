@@ -1,0 +1,60 @@
+@import "utils/responsive.module.scss";
+@import "utils/colors.scss";
+
+.pageWrapper {
+    background-color: #fafafa;
+    @include RP(("padding-top": 100,
+            "padding-bottom": 100,
+        ),
+        1);
+}
+
+.pageHeading {
+    color: #1a202c;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+}
+
+.sectionTitle {
+    color: #1a202c;
+}
+
+.orderItem {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.itemName {
+    color: #1a202c;
+}
+
+.itemDetails {
+    color: #718096;
+}
+
+.itemPrice {
+    color: #1a202c;
+}
+
+.totalLabel,
+.totalValue {
+    color: #1a202c;
+}
+
+.continueButton {
+    background-color: #1a202c;
+    color: white;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #2d3748;
+    }
+}

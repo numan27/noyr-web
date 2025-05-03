@@ -9,10 +9,19 @@ import classNames from "classnames";
 type PaymentMethod = "bank_transfer" | "easypaisa" | "jazzcash" | "cod";
 
 export default function CheckoutPage() {
-  const { cartItems, calculateSubtotal } = useCart();
+  const { cartItems, calculateSubtotal, clearCart } = useCart();
   const [selectedPayment, setSelectedPayment] =
     useState<PaymentMethod>("bank_transfer");
   const [receipt, setReceipt] = useState<File | null>(null);
+  const [receiptUrl, setReceiptUrl] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
 
   const bankDetails = {
     bankName: "HBL Bank",
@@ -37,13 +46,105 @@ export default function CheckoutPage() {
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleCustomerInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCustomerInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedPayment === "bank_transfer" && !receipt) {
-      alert("Please upload your payment receipt");
+
+    // Validate customer info
+    if (
+      !customerInfo.name ||
+      !customerInfo.email ||
+      !customerInfo.phone ||
+      !customerInfo.address
+    ) {
+      setError("Please fill in all customer information fields");
       return;
     }
-    // Submit order logic...
+
+    if (cartItems.length === 0) {
+      setError("Your cart is empty");
+      return;
+    }
+
+    if (selectedPayment === "bank_transfer" && !receipt) {
+      setError("Please upload your payment receipt");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      let receiptUrl = null;
+      if (receipt) {
+        console.log("Uploading receipt...");
+        const formData = new FormData();
+        formData.append("file", receipt);
+        formData.append("name", receipt.name);
+        formData.append("fileType", receipt.type);
+
+        const uploadResponse = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!uploadResponse.ok) {
+          const errorData = await uploadResponse.json();
+          throw new Error(errorData.error || "Failed to upload receipt");
+        }
+
+        const { url } = await uploadResponse.json();
+        console.log("Receipt uploaded successfully:", url);
+        receiptUrl = url;
+      }
+
+      const orderData = {
+        items: cartItems,
+        customerName: customerInfo.name,
+        customerEmail: customerInfo.email,
+        customerPhone: customerInfo.phone,
+        shippingAddress: customerInfo.address,
+        paymentMethod: selectedPayment,
+        totalAmount: calculateSubtotal() + 10, // Including shipping
+        receiptUrl,
+      };
+
+      console.log("Submitting order:", orderData);
+
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Order submission failed:", errorData);
+        throw new Error(errorData.error || "Failed to place order");
+      }
+
+      const { order } = await response.json();
+      console.log("Order placed successfully:", order);
+
+      // Clear the cart after successful order
+      clearCart();
+      // Redirect to order confirmation page
+      window.location.href = `/order-confirmation/${order.id}`;
+    } catch (err) {
+      console.error("Order placement error:", err);
+      setError(err instanceof Error ? err.message : "Failed to place order");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -102,6 +203,64 @@ export default function CheckoutPage() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* Customer Information Form */}
+            <div className={classNames("p-6 rounded-lg mb-6", styles.card)}>
+              <h2
+                className={classNames(
+                  "text-xl font-semibold mb-4",
+                  styles.sectionTitle
+                )}
+              >
+                Customer Information
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className={styles.formLabel}>Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={customerInfo.name}
+                    onChange={handleCustomerInfoChange}
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={styles.formLabel}>Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={customerInfo.email}
+                    onChange={handleCustomerInfoChange}
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={styles.formLabel}>Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={customerInfo.phone}
+                    onChange={handleCustomerInfoChange}
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className={styles.formLabel}>Shipping Address</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={customerInfo.address}
+                    onChange={handleCustomerInfoChange}
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Payment Methods */}
@@ -210,12 +369,12 @@ export default function CheckoutPage() {
                 <div className="flex justify-between">
                   <span className={styles.label}>Subtotal</span>
                   <span className={styles.value}>
-                    ${calculateSubtotal().toFixed(2)}
+                    PKR {calculateSubtotal().toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className={styles.label}>Shipping</span>
-                  <span className={styles.value}>$10.00</span>
+                  <span className={styles.value}>PKR 400.00</span>
                 </div>
                 <div className="border-t pt-2 mt-2">
                   <div className="flex justify-between">
@@ -233,20 +392,25 @@ export default function CheckoutPage() {
                         styles.totalValue
                       )}
                     >
-                      ${(calculateSubtotal() + 10).toFixed(2)}
+                      PKR {(calculateSubtotal() + 400).toFixed(2)}
                     </span>
                   </div>
                 </div>
               </div>
               <button
                 onClick={handleSubmit}
+                disabled={isSubmitting}
                 className={classNames(
                   "w-full mt-6 py-3 rounded-md",
-                  styles.placeOrderButton
+                  styles.placeOrderButton,
+                  isSubmitting && styles.disabled
                 )}
               >
-                Place Order
+                {isSubmitting ? "Placing Order..." : "Place Order"}
               </button>
+              {error && (
+                <p className="text-red-500 mt-2 text-center">{error}</p>
+              )}
             </div>
           </div>
         </div>
