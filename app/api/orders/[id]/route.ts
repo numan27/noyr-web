@@ -3,14 +3,17 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+type RouteParams = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(request: NextRequest, context: RouteParams) {
   try {
     const order = await prisma.order.findUnique({
       where: {
-        id: params.id,
+        id: context.params.id,
       },
       include: {
         items: true,
@@ -31,16 +34,13 @@ export async function GET(
   }
 }
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(request: NextRequest, context: RouteParams) {
   try {
-    const { status } = await req.json();
+    const { status } = await request.json();
 
     const order = await prisma.order.update({
       where: {
-        id: params.id,
+        id: context.params.id,
       },
       data: {
         status,
