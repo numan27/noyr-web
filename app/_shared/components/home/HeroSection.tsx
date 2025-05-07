@@ -59,7 +59,7 @@ const HeroSection = ({ id }: HomeSectionProps) => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/banner-video-2.webm" type="video/webm" />
+        {/* <source src="/banner-video-2.webm" type="video/webm" /> */}
         <source src="/banner-video.mp4" type="video/mp4" />
         <img
           src="/bg-1.jpg"
