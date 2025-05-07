@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ShoppingBag, Search, ArrowRight, Menu, X } from "lucide-react";
-import SideCanvas from "../sideCanvas";
 import CartSideCanvas from "../cartSideCanvas";
 import Link from "next/link";
 import classNames from "classnames";
@@ -247,14 +246,25 @@ const Header = ({ isLandingPage = false }: HeaderProps) => {
         >
           <nav className="flex flex-col items-center space-y-8 text-center">
             {headerLinks.map((items, index) => (
-              <Link
-                key={index}
-                href="#"
-                className="text-white text-xl uppercase tracking-wider"
-                onClick={closeMobileMenu}
-              >
-                {items.title}
-              </Link>
+              <div key={index} className="flex flex-col items-center">
+                <span className="text-white/70 text-xl uppercase tracking-wider mb-4 font-medium">
+                  {items.title}
+                </span>
+                {items.children && (
+                  <div className="flex flex-col items-center space-y-4 mb-6">
+                    {items.children.map((child, childIndex) => (
+                      <Link
+                        key={childIndex}
+                        href={child.path}
+                        className="text-white text-lg tracking-wide hover:text-white/80 transition-colors"
+                        onClick={closeMobileMenu}
+                      >
+                        {child.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
         </div>

@@ -20,6 +20,8 @@ type ProductCardProps = {
     colorsAvailable: string;
     image: StaticImageData;
     hoverImage?: StaticImageData;
+    category: "shirts" | "trousers" | "jeans";
+    sizes: string[];
   };
   selectedVariation: string | null;
   onVariationSelect: (productId: string, size: string) => void;
@@ -92,7 +94,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   "flex items-center justify-center"
                 )}
               >
-                {["S", "M", "L", "XL"].map((size) => (
+                {product.sizes.map((size) => (
                   <button
                     key={size}
                     className={classNames(

@@ -43,8 +43,23 @@ const ProductsSection: React.FC<HomeSectionProps> = ({ id }) => {
       return newArray;
     };
 
-    const shuffled = shuffleArray(products as Product[]).slice(0, 4);
-    setRandomProducts(shuffled);
+    // Get all jeans products
+    const jeansProducts = products.filter(
+      (product) => product.category === "jeans"
+    );
+
+    // Get non-jeans products and shuffle them
+    const nonJeansProducts = shuffleArray(
+      products.filter((product) => product.category !== "jeans")
+    );
+
+    // Take first 2 jeans products and 2 random non-jeans products
+    const selectedProducts = [
+      ...jeansProducts.slice(0, 2),
+      ...nonJeansProducts.slice(0, 2),
+    ];
+
+    setRandomProducts(selectedProducts);
   }, []);
 
   const handleVariationSelect = (productId: string, size: string) => {
@@ -86,18 +101,18 @@ const ProductsSection: React.FC<HomeSectionProps> = ({ id }) => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12 gap-4">
           <div>
-            <span className="uppercase text-brand-900 tracking-widest text-xs sm:text-sm mb-1 sm:mb-2 inline-block">
+            <span className="uppercase text-white-900 tracking-widest text-xs sm:text-sm mb-1 sm:mb-2 inline-block">
               Selected
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white-900">
               Featured Products
             </h2>
           </div>
           <Link
             href={routeConstant.collections.path}
-            className="inline-flex items-center text-brand-900 group"
+            className="inline-flex items-center text-white-900 group"
           >
-            <span className="border-b border-brand-900/0 group-hover:border-brand-900/100 transition-all pb-1 text-sm sm:text-base">
+            <span className="border-b border-white-900/0 group-hover:border-brand-900/100 transition-all pb-1 text-sm sm:text-base">
               View all products
             </span>
             <ArrowRight

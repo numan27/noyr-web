@@ -14,7 +14,7 @@ export default function Sales() {
         desc="Noyr is a modern clothing brand born from a passion for minimalist design and timeless fashion. We're a startup on a mission to redefine everyday style with clean silhouettes, quality fabrics, and intentional details."
       />
       <MissionVision />
-      <CEO />
+      {/* <CEO /> */}
       <Stats />
     </div>
   );

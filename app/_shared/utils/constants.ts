@@ -40,7 +40,7 @@ const products: Product[] = [
     isNew: true,
     description:
       'Add some edge to your look with the Beyond Streets T-Shirt. This charcoal grey piece features a bold graphic on the back showcasing a distressed, city-inspired design with "Beyond Streets" written across it. The front of the shirt remains minimalist, with a subtle logo on the chest for added contrast. Crafted from soft, medium-weight cotton, this shirt is designed for both comfort and style, making it a must-have addition to your wardrobe.',
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Slightly Oversized Fit",
     productCode: "BST-001",
@@ -63,7 +63,7 @@ const products: Product[] = [
     category: "shirts",
     description:
       "Keep it fresh and relaxed with the Beyond Classic Shirt in soft white. This lightweight shirt features a striking contrast of black buttons that give it a modern, edgy vibe. The subtle embroidered detailing adds a touch of sophistication to the overall design. The lapels are neatly tailored, enhancing the clean, crisp look of the shirt. The breathable fabric and relaxed fit make it perfect for warmer days while keeping you stylish.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Relaxed Fit",
     productCode: "BCS-001",
@@ -85,7 +85,7 @@ const products: Product[] = [
     category: "shirts",
     description:
       "Keep it sleek and stylish with the Onyx Textured Black. This shirt is all about the details. The crisp, tailored lapels and perfectly positioned black buttons create a clean, sharp look that can be dressed up or down. Its lightweight, textured fabric adds an extra dimension of sophistication while offering exceptional comfort and breathability.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Relaxed Fit",
     productCode: "OTB-001",
@@ -108,7 +108,7 @@ const products: Product[] = [
     category: "shirts",
     description:
       "Bring effortless cool to your wardrobe with the Coastal Breeze Shirt in Soft Blue. Crafted from lightweight cotton, this shirt in Soft Blue features a subtle striped texture and contrast black buttons. Designed with a relaxed fit, it's perfect for casual, everyday wear. The chest pocket adds a functional touch, while the breathable fabric ensures comfort all day.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Relaxed Fit",
     productCode: "CBS-001",
@@ -131,7 +131,7 @@ const products: Product[] = [
     category: "shirts",
     description:
       "Made from lightweight cotton, this shirt features a rich brown colour with a subtle texture, giving it a modern yet relaxed look. The button-down front, paired with a front pocket, adds functional detail while the open collar and relaxed fit ensure all-day comfort. Whether you're pairing it with neutral trousers or adding a pop of colour, this shirt easily adapts to your style.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Relaxed Fit",
     productCode: "CBDS-001",
@@ -154,7 +154,7 @@ const products: Product[] = [
     category: "shirts",
     description:
       "The Desert Breeze Shirt in Spanish Beige brings a fresh take on classic style. Made from a textured cotton fabric, this shirt offers a subtle depth to the light colour, adding sophistication to your everyday look. Featuring a relaxed fit with a button-down front, the shirt combines comfort and style effortlessly. The black contrast buttons give it a modern edge, while the breathable fabric ensures comfort, making it perfect for casual outings or laid-back events.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Relaxed Fit",
     productCode: "DBS-001",
@@ -177,7 +177,7 @@ const products: Product[] = [
     category: "shirts",
     description:
       "The Slate Shirt in Slate Grey is the perfect balance of modern style and comfort. Made from soft, textured cotton, this shirt offers a unique look with a sophisticated grey tone and subtle texture. Designed with a relaxed fit, it features a button-down front with contrasting black buttons for a refined touch. Ideal for any casual occasion, the breathable fabric ensures all-day wearability while keeping your look fresh and effortless.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     materials: "100% Cotton",
     fit: "Relaxed Fit",
     productCode: "SGS-001",
@@ -201,7 +201,7 @@ const products: Product[] = [
     isNew: true,
     description:
       "The Soft Drift Trousers in Beige are made from Spendix Georgette fabric, known for its softness and breathability. These trousers feature a wide-leg fit with a pintuck detail along the front. The waistband is elasticated with an internal drawstring for a customizable fit. They come with side pockets and split hems, giving you both comfort and utility in one simple design.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["34", "36"],
     materials: "100% Spendix Georgette",
     fit: "Wide leg, relaxed",
     productCode: "SDT-001",
@@ -224,7 +224,7 @@ const products: Product[] = [
     category: "trousers",
     description:
       "The Soft Drift Trousers in Charcoal Black are made from Spendix Georgette fabric, known for its softness and breathability. These trousers feature a wide-leg fit with a pintuck detail along the front. The waistband is elasticated with an internal drawstring for a customizable fit. They come with side pockets and split hems, giving you both comfort and utility in one simple design.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["34", "36"],
     materials: "100% Spendix Georgette",
     fit: "Wide leg, relaxed",
     productCode: "SDT-002",
@@ -247,7 +247,7 @@ const products: Product[] = [
     category: "trousers",
     description:
       "The Soft Drift Trousers in Crisp White are made from Spendix Georgette fabric, known for its softness and breathability. These trousers feature a wide-leg fit with a pintuck detail along the front. The waistband is elasticated with an internal drawstring for a customizable fit. They come with side pockets and split hems, giving you both comfort and utility in one simple design.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["34", "36"],
     materials: "100% Spendix Georgette",
     fit: "Wide leg, relaxed",
     productCode: "SDT-003",
@@ -270,7 +270,7 @@ const products: Product[] = [
     category: "trousers",
     description:
       "The Soft Drift Trousers in Reddish Brown are made from Spendix Georgette fabric, known for its softness and breathability. These trousers feature a wide-leg fit with a pintuck detail along the front. The waistband is elasticated with an internal drawstring for a customizable fit. They come with side pockets and split hems, giving you both comfort and utility in one simple design.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["34", "36"],
     materials: "100% Spendix Georgette",
     fit: "Wide leg, relaxed",
     productCode: "SDT-004",
@@ -293,7 +293,7 @@ const products: Product[] = [
     category: "trousers",
     description:
       "The Soft Drift Trousers in Crisp Grey are made from Spendix Georgette fabric, known for its softness and breathability. These trousers feature a wide-leg fit with a pintuck detail along the front. The waistband is elasticated with an internal drawstring for a customizable fit. They come with side pockets and split hems, giving you both comfort and utility in one simple design.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["34", "36"],
     materials: "100% Spendix Georgette",
     fit: "Wide leg, relaxed",
     productCode: "SDT-005",
@@ -317,7 +317,7 @@ const products: Product[] = [
     isNew: true,
     description:
       "The Raging Storm Baggy Denim Jeans in Faded Black offer a bold, relaxed fit with a rugged, worn-in look. Made from soft denim, these jeans feature a heavy wash with stress area tacking and a slight whiskering effect. The zip fly and belt loops provide a classic feel, while the embroidered logo on the back pocket adds a modern touch. These baggy jeans are perfect for pairing with casual wear for a laid-back, stylish vibe.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["32", "34", "36"],
     materials: "100% Cotton",
     fit: "Baggy, Straight, Wide-Legged",
     productCode: "RSD-001",
@@ -340,7 +340,7 @@ const products: Product[] = [
     category: "jeans",
     description:
       "The Horizon Blue Baggy Denim Jeans in Light Blue are designed for with a relaxed, wide-legged fit and soft, textured denim, these jeans feature a classic blue wash with a slightly faded look. The jeans are accented with stress area tacking and a subtle whiskering effect. The embroidered logo on the back pocket adds a touch of modern detailing, making these baggy jeans a versatile choice for casual outings.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["32", "34", "36"],
     materials: "100% Cotton",
     fit: "Baggy, Straight, Wide-Legged",
     productCode: "HBD-001",
