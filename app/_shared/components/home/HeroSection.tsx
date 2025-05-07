@@ -30,18 +30,39 @@ const HeroSection = ({ id }: HomeSectionProps) => {
     };
 
     // Try to play video (autoplay may be blocked by browser)
-    const playVideo = () => {
+    const playVideo = async () => {
       if (videoRef.current) {
-        videoRef.current.play().catch((error) => {
-          console.log("Video autoplay was prevented:", error);
-        });
+        try {
+          // Try to play immediately
+          await videoRef.current.play();
+        } catch (error) {
+          console.log("Initial video autoplay was prevented:", error);
+
+          // Add touch event listener for iOS
+          const playOnTouch = async () => {
+            try {
+              await videoRef.current?.play();
+              document.removeEventListener("touchstart", playOnTouch);
+            } catch (e) {
+              console.log("Video play on touch failed:", e);
+            }
+          };
+
+          document.addEventListener("touchstart", playOnTouch);
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     playVideo();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      // Clean up touch event listener if it exists
+      if (videoRef.current) {
+        document.removeEventListener("touchstart", () => {});
+      }
+    };
   }, []);
 
   return (
@@ -57,9 +78,12 @@ const HeroSection = ({ id }: HomeSectionProps) => {
         muted
         loop
         playsInline
+        preload="auto"
+        webkit-playsinline="true"
+        x5-playsinline="true"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        {/* <source src="/banner-video-2.webm" type="video/webm" /> */}
+        <source src="/banner-video-2.webm" type="video/webm" />
         <source src="/banner-video.mp4" type="video/mp4" />
         <img
           src="/bg-1.jpg"

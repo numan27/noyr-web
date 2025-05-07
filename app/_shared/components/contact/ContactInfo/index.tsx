@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
-import { FiMail, FiMapPin, FiPhone, FiClock } from "react-icons/fi";
+import { FiMail, FiPhone, FiClock } from "react-icons/fi";
+import { IoLogoWhatsapp } from "react-icons/io5";
 
 const ContactInfo = () => {
   return (
@@ -17,8 +18,7 @@ const ContactInfo = () => {
           </div>
           <div className={styles.content}>
             <h4>Email Us</h4>
-            <p>contact@noyr.com</p>
-            <p>support@noyr.com</p>
+            <a href="mailto:info@noyr.com">info@noyr.com</a>
           </div>
         </div>
 
@@ -28,19 +28,17 @@ const ContactInfo = () => {
           </div>
           <div className={styles.content}>
             <h4>Call Us</h4>
-            <p>+1 (555) 123-4567</p>
-            <p>Mon-Fri, 9am-6pm EST</p>
+            <a href="tel:+923147883458">+923147883458</a>
           </div>
         </div>
 
         <div className={styles.infoItem}>
           <div className={styles.iconWrapper}>
-            <FiMapPin />
+            <IoLogoWhatsapp />
           </div>
           <div className={styles.content}>
-            <h4>Visit Us</h4>
-            <p>123 Fashion Street</p>
-            <p>New York, NY 10001</p>
+            <h4>Whatsapp</h4>
+            <a href="https://wa.me/923147883458">+923147883458</a>
           </div>
         </div>
 

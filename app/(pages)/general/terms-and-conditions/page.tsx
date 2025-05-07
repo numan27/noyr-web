@@ -224,7 +224,7 @@ export default function TermsAndConditions() {
                   href="mailto:support@noyr.com"
                   className="text-blue-600 hover:underline"
                 >
-                  support@noyr.com
+                  help@noyr.com
                 </Link>
               </li>
               <li>
@@ -236,7 +236,7 @@ export default function TermsAndConditions() {
                   https://noyr.store
                 </Link>
               </li>
-              <li>Phone: +1 (555) 123-4567</li>
+              <li>Phone: +923147883458</li>
             </ul>
           </section>
         </div>
