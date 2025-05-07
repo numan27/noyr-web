@@ -64,6 +64,7 @@ export default function SearchResultsClient({
             {initialResults.map((product) => (
               <ProductCard
                 key={product.id}
+                // @ts-ignore
                 product={{
                   id: product.id,
                   name: product.name,

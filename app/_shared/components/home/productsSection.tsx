@@ -17,7 +17,16 @@ interface Product {
   color: string;
   colorsAvailable: string;
   image: StaticImageData;
-  hoverImage?: StaticImageData;
+  hoverImage: StaticImageData;
+  images: StaticImageData[];
+  category: "shirts" | "trousers" | "jeans";
+  isNew?: boolean;
+  description: string;
+  sizes: string[];
+  materials: string;
+  fit: string;
+  productCode: string;
+  modelInfo: string;
 }
 
 interface HomeSectionProps {
@@ -45,12 +54,14 @@ const ProductsSection: React.FC<HomeSectionProps> = ({ id }) => {
 
     // Get all jeans products
     const jeansProducts = products.filter(
-      (product) => product.category === "jeans"
+      (product): product is Product => product.category === "jeans"
     );
 
     // Get non-jeans products and shuffle them
     const nonJeansProducts = shuffleArray(
-      products.filter((product) => product.category !== "jeans")
+      products.filter(
+        (product): product is Product => product.category !== "jeans"
+      )
     );
 
     // Take first 2 jeans products and 2 random non-jeans products
