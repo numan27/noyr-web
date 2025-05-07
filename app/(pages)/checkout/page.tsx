@@ -13,7 +13,10 @@ import { StaticImageData } from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-type PaymentMethod = "bank_transfer" | "easypaisa" | "jazzcash" | "cod";
+type PaymentMethod =
+  | "bank_transfer"
+  // "easypaisa" | "jazzcash" |
+  | "cod";
 
 type CartItem = {
   id: number | string;
@@ -41,10 +44,10 @@ export default function CheckoutPage() {
   const router = useRouter();
 
   const bankDetails = {
-    bankName: "HBL Bank",
-    accountTitle: "Your Company Name",
-    accountNumber: "1234-5678-9012-3456",
-    iban: "PK36HABB0000123456789012",
+    bankName: "Faysal Bank",
+    accountTitle: "NOYR",
+    accountNumber: "3558301000009013",
+    iban: "PKO2FAYS3558301000009013",
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +57,7 @@ export default function CheckoutPage() {
   };
 
   const handleWhatsAppShare = () => {
-    const whatsappNumber = "+923001234567";
+    const whatsappNumber = "+96897676629";
     const message = encodeURIComponent(
       `Order Total: $${calculateSubtotal().toFixed(2)}\nBank Details:\nBank: ${
         bankDetails.bankName
@@ -314,83 +317,80 @@ export default function CheckoutPage() {
                 Payment Method
               </h2>
               <div className="space-y-4">
-                {["bank_transfer", "easypaisa", "jazzcash", "cod"].map(
-                  (method) => (
-                    <div key={method}>
-                      <label className="flex items-center space-x-3">
-                        <input
-                          type="radio"
-                          value={method}
-                          checked={selectedPayment === method}
-                          onChange={(e) =>
-                            setSelectedPayment(e.target.value as PaymentMethod)
-                          }
-                          className={classNames(styles.radioInput)}
-                        />
-                        <span className={classNames(styles.radioLabel)}>
-                          {method.replace("_", " ")}
-                        </span>
-                      </label>
+                {["bank_transfer", "COD"].map((method) => (
+                  <div key={method}>
+                    <label className="flex items-center space-x-3">
+                      <input
+                        type="radio"
+                        value={method}
+                        checked={selectedPayment === method}
+                        onChange={(e) =>
+                          setSelectedPayment(e.target.value as PaymentMethod)
+                        }
+                        className={classNames(styles.radioInput)}
+                      />
+                      <span className={classNames(styles.radioLabel)}>
+                        {method.replace("_", " ")}
+                      </span>
+                    </label>
 
-                      {selectedPayment === method && (
-                        <div
-                          className={classNames(
-                            styles.paymentInfo,
-                            "ml-7 mt-2 p-4 rounded"
-                          )}
-                        >
-                          {method === "bank_transfer" ? (
-                            <>
-                              <h3
+                    {selectedPayment === method && (
+                      <div
+                        className={classNames(
+                          styles.paymentInfo,
+                          "ml-7 mt-2 p-4 rounded"
+                        )}
+                      >
+                        {method === "bank_transfer" ? (
+                          <>
+                            <h3
+                              className={classNames(
+                                styles.subHeading,
+                                "font-medium mb-2"
+                              )}
+                            >
+                              Bank Details
+                            </h3>
+                            <p>Bank: {bankDetails.bankName}</p>
+                            <p>Account Title: {bankDetails.accountTitle}</p>
+                            <p>Account Number: {bankDetails.accountNumber}</p>
+                            <p>IBAN: {bankDetails.iban}</p>
+
+                            <div className="mt-4">
+                              <label className={classNames(styles.uploadLabel)}>
+                                Upload Payment Receipt
+                              </label>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
                                 className={classNames(
-                                  styles.subHeading,
-                                  "font-medium mb-2"
+                                  styles.fileInput,
+                                  "mt-1 block w-full"
                                 )}
-                              >
-                                Bank Details
-                              </h3>
-                              <p>Bank: {bankDetails.bankName}</p>
-                              <p>Account Title: {bankDetails.accountTitle}</p>
-                              <p>Account Number: {bankDetails.accountNumber}</p>
-                              <p>IBAN: {bankDetails.iban}</p>
+                              />
+                            </div>
 
-                              <div className="mt-4">
-                                <label
-                                  className={classNames(styles.uploadLabel)}
-                                >
-                                  Upload Payment Receipt
-                                </label>
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  onChange={handleFileChange}
-                                  className={classNames(
-                                    styles.fileInput,
-                                    "mt-1 block w-full"
-                                  )}
-                                />
-                              </div>
-
-                              <button
-                                onClick={handleWhatsAppShare}
-                                className={classNames(
-                                  styles.whatsappButton,
-                                  "mt-4"
-                                )}
-                              >
-                                Share on WhatsApp
-                              </button>
-                            </>
-                          ) : (
-                            <p>{`${
-                              method.charAt(0).toUpperCase() + method.slice(1)
-                            } Account: 0300-1234567`}</p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )
-                )}
+                            <button
+                              onClick={handleWhatsAppShare}
+                              className={classNames(
+                                styles.whatsappButton,
+                                "mt-4"
+                              )}
+                            >
+                              Share on WhatsApp
+                            </button>
+                          </>
+                        ) : (
+                          ""
+                          // <p>{`${
+                          //   method.charAt(0).toUpperCase() + method.slice(1)
+                          // } Account: 0300-1234567`}</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

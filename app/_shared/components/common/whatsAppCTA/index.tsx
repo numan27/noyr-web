@@ -7,7 +7,7 @@ import styles from "./style.module.scss";
 
 const WhatsAppCTA = () => {
   const openWhatsApp = () => {
-    window.open("https://wa.me/1234567890", "_blank");
+    window.open("https://wa.me/96897676629", "_blank");
   };
 
   return (
