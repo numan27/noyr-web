@@ -25,13 +25,20 @@ export async function createOrder(data: OrderData) {
     // Generate a random order ID
     const orderId = Math.random().toString(36).substring(2, 15);
 
+    // Get current time in Pakistan timezone (GMT+5)
+    const pkTime = new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Karachi",
+      dateStyle: "full",
+      timeStyle: "long",
+    });
+
     // Create email content
     const emailContent = `
       <h2>New Order Received</h2>
       
       <h3>Order Details:</h3>
       <p><strong>Order ID:</strong> ${orderId}</p>
-      <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+      <p><strong>Date:</strong> ${pkTime}</p>
       
       <h3>Customer Information:</h3>
       <p><strong>Name:</strong> ${data.customerInfo.name}</p>
@@ -90,6 +97,9 @@ export async function createOrder(data: OrderData) {
         shippingAddress: data.customerInfo.address,
         paymentMethod: data.paymentMethod,
         items: data.items,
+        createdAt: new Date().toLocaleString("en-US", {
+          timeZone: "Asia/Karachi",
+        }),
       },
     };
   } catch (error) {
