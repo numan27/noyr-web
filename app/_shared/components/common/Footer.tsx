@@ -8,7 +8,7 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
-import { routeConstant } from "routes/constants";
+import { routeConstant } from "../../../routes/constants";
 import Image from "next/image";
 import { Images } from "assets";
 
@@ -32,6 +32,10 @@ const Footer: React.FC = () => {
         {
           label: "Terms & Conditions",
           href: routeConstant.termsAndConditions.path,
+        },
+        {
+          label: "Size Guide",
+          href: routeConstant.sizeGuide.path,
         },
         {
           label: "Shipping & Returns",

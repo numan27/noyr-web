@@ -1,6 +1,26 @@
-const routeConstant = {
-  // Public Pages
+export type RouteConstant = {
+  home: { path: string; title: string };
+  shirts: { path: string; title: string };
+  trousers: { path: string; title: string };
+  jeans: { path: string; title: string };
+  shop: { path: string; title: string };
+  brand: { path: string; title: string };
+  info: { path: string; title: string };
+  collections: { path: string; title: string };
+  productDetail: { path: string; title: string };
+  sales: { path: string; title: string };
+  lookbook: { path: string; title: string };
+  about: { path: string; title: string };
+  contact: { path: string; title: string };
+  privacyPolicy: { path: string; title: string };
+  termsAndConditions: { path: string; title: string };
+  shippingAndReturns: { path: string; title: string };
+  searchResults: { path: string; title: string };
+  sizeGuide: { path: string; title: string };
+};
 
+const routeConstant: RouteConstant = {
+  // Public Pages
   home: {
     path: "/",
     title: "Home",

@@ -6,22 +6,21 @@ const faqs = [
   {
     question: "What is your return policy?",
     answer:
-      "We offer a 30-day return policy for all unworn items in their original condition with tags attached. Shipping costs for returns are the responsibility of the customer unless the item is defective.",
+      "We offer a 7-day return policy for all unworn items in their original condition with tags attached. To initiate a return, please contact our customer service team via email at help@noyr.com or WhatsApp. Shipping costs for returns are the responsibility of the customer unless the item is defective.",
   },
   {
     question: "How long does shipping take?",
     answer:
-      "Standard shipping typically takes 3-5 business days within the continental US. International shipping can take 7-14 business days depending on the destination.",
+      "Standard shipping typically takes 3-5 business days within Pakistan. We charge a flat rate of PKR 300 for shipping anywhere in Pakistan.",
   },
   {
     question: "Do you offer international shipping?",
-    answer:
-      "Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location. You can calculate shipping costs at checkout.",
+    answer: "Currently, we only ship within Pakistan.",
   },
   {
     question: "How can I track my order?",
     answer:
-      "Once your order ships, you'll receive a confirmation email with tracking information. You can also track your order through your account dashboard.",
+      "Once your order ships, you'll receive a confirmation email with tracking information. You can also contact our customer service team for tracking updates.",
   },
   {
     question: "What payment methods do you accept?",

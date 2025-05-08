@@ -116,12 +116,12 @@ export default function TermsAndConditions() {
               Actual colors may vary due to differences in monitor settings and
               device displays. For the most accurate product information, please
               contact our customer service team at{" "}
-              <Link
-                href="mailto:support@noyr.com"
+              <a
+                href="mailto:info@noyr.store"
                 className="text-blue-600 hover:underline"
               >
-                support@noyr.com
-              </Link>
+                info@noyr.store
+              </a>
               .
             </p>
           </section>
@@ -220,12 +220,12 @@ export default function TermsAndConditions() {
             <ul className={classNames(styles.sectionList)}>
               <li>
                 Email:{" "}
-                <Link
-                  href="mailto:support@noyr.com"
+                <a
+                  href="mailto:info@noyr.store"
                   className="text-blue-600 hover:underline"
                 >
-                  help@noyr.com
-                </Link>
+                  info@noyr.store
+                </a>
               </li>
               <li>
                 Website:{" "}

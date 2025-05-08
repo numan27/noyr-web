@@ -18,32 +18,28 @@
     }
 }
 
-.methodsGrid,
-.returnsGrid {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-
-    @include respond-to("medium") {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.singleMethodGrid {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .methodCard,
 .policyCard {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    text-align: center;
 
     &:hover {
         transform: translateY(-5px);
     }
 
     h3 {
-        font-size: 1.5rem;
-        margin: 1rem 0;
+        font-size: 1.8rem;
+        margin: 1.5rem 0;
         color: $primary-dark;
     }
 
@@ -51,58 +47,67 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        text-align: left;
 
         li {
-            margin: 0.5rem 0;
+            margin: 1rem 0;
             color: $text-secondary;
-            font-size: 1rem;
+            font-size: 1.1rem;
             line-height: 1.6;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
 
             &:before {
                 content: "•";
                 position: absolute;
                 left: 0;
                 color: $primary;
+                font-size: 1.4rem;
+                line-height: 1;
             }
         }
     }
 
     p {
-        color: $text-secondary;
-        line-height: 1.6;
+        color: $text-secondary !important;
+        line-height: 1.8;
         margin: 0;
+        font-size: 1.1rem;
+        text-align: left;
     }
 }
 
 .iconWrapper {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     background: $primary-light;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin: 0 auto;
 
     svg {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
         color: $primary;
     }
 }
 
 .note {
     background: $background-light;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 
     p {
-        color: $text-secondary;
+        color: $text-secondary !important;
         text-align: center;
         margin: 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 }

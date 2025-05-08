@@ -58,12 +58,7 @@ export default function CheckoutPage() {
 
   const handleWhatsAppShare = () => {
     const whatsappNumber = "+96897676629";
-    const message = encodeURIComponent(
-      `Order Total: $${calculateSubtotal().toFixed(2)}\nBank Details:\nBank: ${
-        bankDetails.bankName
-      }\nAccount: ${bankDetails.accountNumber}`
-    );
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+    window.open(`https://wa.me/${whatsappNumber}`, "_blank");
   };
 
   const handleCustomerInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -415,8 +410,12 @@ export default function CheckoutPage() {
                 </div>
                 {cartItems.length > 0 && (
                   <div className="flex justify-between">
-                    <span className={classNames(styles.label)}>Shipping</span>
-                    <span className={classNames(styles.value)}>PKR 400.00</span>
+                    <span className={classNames(styles.label)}>
+                      Shipping {calculateSubtotal() >= 10000 && "(Free)"}
+                    </span>
+                    <span className={classNames(styles.value)}>
+                      {calculateSubtotal() >= 10000 ? "PKR 0.00" : "PKR 300.00"}
+                    </span>
                   </div>
                 )}
                 <div className="border-t pt-2 mt-2">
@@ -437,7 +436,12 @@ export default function CheckoutPage() {
                     >
                       PKR{" "}
                       {(
-                        calculateSubtotal() + (cartItems.length > 0 ? 400 : 0)
+                        calculateSubtotal() +
+                        (cartItems.length > 0
+                          ? calculateSubtotal() >= 10000
+                            ? 0
+                            : 300
+                          : 0)
                       ).toFixed(2)}
                     </span>
                   </div>

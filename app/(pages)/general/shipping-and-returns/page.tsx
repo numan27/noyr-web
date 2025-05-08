@@ -21,14 +21,14 @@ export default function ShippingPage() {
         title="Shipping & Returns"
         desc="Learn about our shipping methods and return policies"
       />
-      <div>
-        <header className={styles.pageHeader}>
+      <div className="lg:pt-6 md:pt-4 pt-2">
+        {/* <header className={styles.pageHeader}>
           <h1>Shipping & Returns</h1>
           <p>
             Everything you need to know about our shipping methods and returns
             policy
           </p>
-        </header>
+        </header> */}
         <ShippingContent />
       </div>
       {/* </motion.div> */}

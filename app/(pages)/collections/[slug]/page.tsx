@@ -58,6 +58,7 @@ export default function ProductDetail({ params }: PageProps) {
     null
   );
   const { addToCart } = useCart();
+  const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
 
   const product = products.find((p) => generateSlug(p.name) === slug);
 
@@ -200,7 +201,191 @@ export default function ProductDetail({ params }: PageProps) {
                     </button>
                   ))}
                 </div>
+
+                {/* Size Chart Button */}
+                <button
+                  onClick={() => setIsSizeChartOpen(true)}
+                  className="text-sm text-gray-600 underline mt-2 hover:text-gray-900"
+                >
+                  Size Guide
+                </button>
               </div>
+
+              {/* Size Chart Modal */}
+              {isSizeChartOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                  <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-xl font-bold">Size Guide</h2>
+                        <button
+                          onClick={() => setIsSizeChartOpen(false)}
+                          className="text-gray-500 hover:text-gray-700"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      <div className="space-y-6">
+                        {product.category === "jeans" && (
+                          <div>
+                            <h3 className="font-medium mb-3">
+                              Jeans Measurements (inches/cm)
+                            </h3>
+                            <div className="overflow-x-auto">
+                              <table className="w-full text-sm">
+                                <thead>
+                                  <tr className="bg-gray-100">
+                                    <th className="p-2 text-left">Size</th>
+                                    <th className="p-2 text-left">Waist</th>
+                                    <th className="p-2 text-left">
+                                      Front Rise
+                                    </th>
+                                    <th className="p-2 text-left">Inseam</th>
+                                    <th className="p-2 text-left">
+                                      Leg Opening
+                                    </th>
+                                    <th className="p-2 text-left">Length</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr className="border-b">
+                                    <td className="p-2">32</td>
+                                    <td className="p-2">32" / 81.5cm</td>
+                                    <td className="p-2">12.5" / 32cm</td>
+                                    <td className="p-2">30" / 76cm</td>
+                                    <td className="p-2">8.5" / 24cm</td>
+                                    <td className="p-2">42" / 106.75cm</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">34</td>
+                                    <td className="p-2">34" / 86.5cm</td>
+                                    <td className="p-2">13" / 33cm</td>
+                                    <td className="p-2">30" / 76cm</td>
+                                    <td className="p-2">9" / 23cm</td>
+                                    <td className="p-2">42" / 106.75cm</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2">36</td>
+                                    <td className="p-2">36" / 91.5cm</td>
+                                    <td className="p-2">13.5" / 34.35cm</td>
+                                    <td className="p-2">30" / 76cm</td>
+                                    <td className="p-2">9.5" / 24.5cm</td>
+                                    <td className="p-2">42" / 106.75cm</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        )}
+
+                        {product.category === "trousers" && (
+                          <div>
+                            <h3 className="font-medium mb-3">
+                              Trouser Measurements
+                            </h3>
+                            <div className="overflow-x-auto">
+                              <table className="w-full text-sm">
+                                <thead>
+                                  <tr className="bg-gray-100">
+                                    <th className="p-2 text-left">
+                                      Measurement
+                                    </th>
+                                    <th className="p-2 text-left">Size 34</th>
+                                    <th className="p-2 text-left">Size 36</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr className="border-b">
+                                    <td className="p-2">Waist</td>
+                                    <td className="p-2">34"</td>
+                                    <td className="p-2">36"</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">Hip</td>
+                                    <td className="p-2">46"</td>
+                                    <td className="p-2">48"</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">Thigh</td>
+                                    <td className="p-2">13.5"</td>
+                                    <td className="p-2">14"</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">Knee</td>
+                                    <td className="p-2">9"</td>
+                                    <td className="p-2">9.5"</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">Leg Opening</td>
+                                    <td className="p-2">7"</td>
+                                    <td className="p-2">7.5"</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2">Out Seam</td>
+                                    <td className="p-2">39"</td>
+                                    <td className="p-2">40"</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        )}
+
+                        {product.category === "shirts" && (
+                          <div>
+                            <h3 className="font-medium mb-3">
+                              Shirt Measurements (cm)
+                            </h3>
+                            <div className="overflow-x-auto">
+                              <table className="w-full text-sm">
+                                <thead>
+                                  <tr className="bg-gray-100">
+                                    <th className="p-2 text-left">Size</th>
+                                    <th className="p-2 text-left">
+                                      Chest Width
+                                    </th>
+                                    <th className="p-2 text-left">
+                                      Sleeve Length
+                                    </th>
+                                    <th className="p-2 text-left">
+                                      Front Length
+                                    </th>
+                                    <th className="p-2 text-left">Shoulder</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr className="border-b">
+                                    <td className="p-2">S</td>
+                                    <td className="p-2">58.5</td>
+                                    <td className="p-2">26.5</td>
+                                    <td className="p-2">70.5</td>
+                                    <td className="p-2">17.9</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">M</td>
+                                    <td className="p-2">61</td>
+                                    <td className="p-2">26.5</td>
+                                    <td className="p-2">71.5</td>
+                                    <td className="p-2">18.8</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2">L</td>
+                                    <td className="p-2">64</td>
+                                    <td className="p-2">26.5</td>
+                                    <td className="p-2">73</td>
+                                    <td className="p-2">20</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Product Details Section */}
               <div className="border-t border-gray-300 pt-4 sm:pt-6 space-y-3 sm:space-y-4">

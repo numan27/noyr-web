@@ -1,6 +1,7 @@
 import { Images } from "assets";
 import { StaticImageData } from "next/image";
 import { routeConstant } from "routes/constants";
+// import { routeConstant, type RouteConstant } from "../../../routes/constants";
 
 export type Product = {
   id: string;
@@ -40,7 +41,7 @@ const products: Product[] = [
     isNew: true,
     description:
       'Add some edge to your look with the Beyond Streets T-Shirt. This charcoal grey piece features a bold graphic on the back showcasing a distressed, city-inspired design with "Beyond Streets" written across it. The front of the shirt remains minimalist, with a subtle logo on the chest for added contrast. Crafted from soft, medium-weight cotton, this shirt is designed for both comfort and style, making it a must-have addition to your wardrobe.',
-    sizes: ["S", "M", "L"],
+    sizes: ["M", "L", "XL"],
     materials: "100% Cotton",
     fit: "Slightly Oversized Fit",
     productCode: "BST-001",
@@ -392,6 +393,10 @@ const headerLinks: SideBarItemPathType[] = [
       {
         path: routeConstant.contact.path,
         title: routeConstant.contact.title,
+      },
+      {
+        path: routeConstant.sizeGuide.path,
+        title: routeConstant.sizeGuide.title,
       },
       {
         path: routeConstant.termsAndConditions.path,

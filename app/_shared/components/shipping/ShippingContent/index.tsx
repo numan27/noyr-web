@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { motion } from "framer-motion";
-import { FiTruck, FiPackage, FiRefreshCcw, FiClock } from "react-icons/fi";
+import { FiTruck, FiClock } from "react-icons/fi";
 
 const ShippingContent = () => {
   const shippingMethods = [
@@ -10,27 +10,18 @@ const ShippingContent = () => {
       title: "Standard Shipping",
       details: [
         "Delivery in 3-5 business days",
-        "Free shipping on orders over $100",
+        "PKR 300 flat rate shipping anywhere in Pakistan",
         "Tracking number provided",
-      ],
-    },
-    {
-      icon: <FiPackage />,
-      title: "Express Shipping",
-      details: [
-        "Delivery in 1-2 business days",
-        "Additional $15 shipping fee",
-        "Priority handling",
       ],
     },
   ];
 
   const returnPolicy = [
     {
-      icon: <FiRefreshCcw />,
-      title: "Returns Process",
+      icon: <FiClock />,
+      title: "Returns Policy",
       content:
-        "We accept returns within 30 days of delivery. Items must be unworn, unwashed, and have original tags attached. Once we receive your return, we'll process your refund within 5-7 business days.",
+        "We accept returns within 7 days of delivery. Items must be unworn, unwashed, and have original tags attached. To initiate a return, please contact our customer service team via email at help@noyr.com or WhatsApp. Once we receive your return, we'll process your refund within 5-7 business days.",
     },
     {
       icon: <FiClock />,
@@ -49,8 +40,8 @@ const ShippingContent = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2>Shipping Methods</h2>
-        <div className={styles.methodsGrid}>
+        <h2>Shipping Method</h2>
+        <div className={styles.singleMethodGrid}>
           {shippingMethods.map((method, index) => (
             <motion.div
               key={index}
@@ -80,7 +71,7 @@ const ShippingContent = () => {
         transition={{ duration: 0.6, delay: 0.3 }}
       >
         <h2>Returns & Processing</h2>
-        <div className={styles.returnsGrid}>
+        <div className={styles.singleMethodGrid}>
           {returnPolicy.map((policy, index) => (
             <motion.div
               key={index}
