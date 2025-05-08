@@ -186,7 +186,7 @@ export default function ProductDetail({ params }: PageProps) {
               <div className="space-y-2">
                 <h3 className="font-medium text-gray-900">Select Size</h3>
                 <div className="flex flex-wrap gap-2">
-                  {(product.sizes || ["S", "M", "L", "XL"]).map((size) => (
+                  {product.sizes.map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
@@ -227,6 +227,46 @@ export default function ProductDetail({ params }: PageProps) {
                       </div>
 
                       <div className="space-y-6">
+                        {product.id === "1" && (
+                          <div>
+                            <h3 className="font-medium mb-3">
+                              T-Shirt Measurements (inches)
+                            </h3>
+                            <div className="overflow-x-auto">
+                              <table className="w-full text-sm">
+                                <thead>
+                                  <tr className="bg-gray-100">
+                                    <th className="p-2 text-left">Size</th>
+                                    <th className="p-2 text-left">Length</th>
+                                    <th className="p-2 text-left">Chest</th>
+                                    <th className="p-2 text-left">Sleeve</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr className="border-b">
+                                    <td className="p-2">M</td>
+                                    <td className="p-2">26"</td>
+                                    <td className="p-2">23"</td>
+                                    <td className="p-2">10"</td>
+                                  </tr>
+                                  <tr className="border-b">
+                                    <td className="p-2">L</td>
+                                    <td className="p-2">27"</td>
+                                    <td className="p-2">24"</td>
+                                    <td className="p-2">10.5"</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2">XL</td>
+                                    <td className="p-2">28"</td>
+                                    <td className="p-2">25"</td>
+                                    <td className="p-2">10.5"</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        )}
+
                         {product.category === "jeans" && (
                           <div>
                             <h3 className="font-medium mb-3">
@@ -332,55 +372,58 @@ export default function ProductDetail({ params }: PageProps) {
                           </div>
                         )}
 
-                        {product.category === "shirts" && (
-                          <div>
-                            <h3 className="font-medium mb-3">
-                              Shirt Measurements (cm)
-                            </h3>
-                            <div className="overflow-x-auto">
-                              <table className="w-full text-sm">
-                                <thead>
-                                  <tr className="bg-gray-100">
-                                    <th className="p-2 text-left">Size</th>
-                                    <th className="p-2 text-left">
-                                      Chest Width
-                                    </th>
-                                    <th className="p-2 text-left">
-                                      Sleeve Length
-                                    </th>
-                                    <th className="p-2 text-left">
-                                      Front Length
-                                    </th>
-                                    <th className="p-2 text-left">Shoulder</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr className="border-b">
-                                    <td className="p-2">S</td>
-                                    <td className="p-2">58.5</td>
-                                    <td className="p-2">26.5</td>
-                                    <td className="p-2">70.5</td>
-                                    <td className="p-2">17.9</td>
-                                  </tr>
-                                  <tr className="border-b">
-                                    <td className="p-2">M</td>
-                                    <td className="p-2">61</td>
-                                    <td className="p-2">26.5</td>
-                                    <td className="p-2">71.5</td>
-                                    <td className="p-2">18.8</td>
-                                  </tr>
-                                  <tr>
-                                    <td className="p-2">L</td>
-                                    <td className="p-2">64</td>
-                                    <td className="p-2">26.5</td>
-                                    <td className="p-2">73</td>
-                                    <td className="p-2">20</td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                        {product.category === "shirts" &&
+                          product.id !== "1" && (
+                            <div>
+                              <h3 className="font-medium mb-3">
+                                Shirt Measurements (cm)
+                              </h3>
+                              <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                  <thead>
+                                    <tr className="bg-gray-100">
+                                      <th className="p-2 text-left">Size</th>
+                                      <th className="p-2 text-left">
+                                        Chest Width
+                                      </th>
+                                      <th className="p-2 text-left">
+                                        Sleeve Length
+                                      </th>
+                                      <th className="p-2 text-left">
+                                        Front Length
+                                      </th>
+                                      <th className="p-2 text-left">
+                                        Shoulder
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr className="border-b">
+                                      <td className="p-2">S</td>
+                                      <td className="p-2">58.5</td>
+                                      <td className="p-2">26.5</td>
+                                      <td className="p-2">70.5</td>
+                                      <td className="p-2">17.9</td>
+                                    </tr>
+                                    <tr className="border-b">
+                                      <td className="p-2">M</td>
+                                      <td className="p-2">61</td>
+                                      <td className="p-2">26.5</td>
+                                      <td className="p-2">71.5</td>
+                                      <td className="p-2">18.8</td>
+                                    </tr>
+                                    <tr>
+                                      <td className="p-2">L</td>
+                                      <td className="p-2">64</td>
+                                      <td className="p-2">26.5</td>
+                                      <td className="p-2">73</td>
+                                      <td className="p-2">20</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </div>
                   </div>

@@ -7,6 +7,84 @@ export default function SizeGuidePage() {
       <h1>Size Guide</h1>
 
       <div>
+        {/* T-Shirts Size Chart */}
+        <section className={styles.sizeChartSection}>
+          <h2>T-Shirts Size Chart</h2>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Length (inches)</th>
+                  <th>Chest (inches)</th>
+                  <th>Sleeve (inches)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>M</td>
+                  <td>26</td>
+                  <td>23</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>27</td>
+                  <td>24</td>
+                  <td>10.5</td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>28</td>
+                  <td>25</td>
+                  <td>10.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Shirts Size Chart */}
+        <section className={styles.sizeChartSection}>
+          <h2>Shirts Size Chart</h2>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chest Width</th>
+                  <th>Sleeve Length</th>
+                  <th>Front Length</th>
+                  <th>Shoulder</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S</td>
+                  <td>58.5</td>
+                  <td>26.5</td>
+                  <td>70.5</td>
+                  <td>17.9</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>61</td>
+                  <td>26.5</td>
+                  <td>71.5</td>
+                  <td>18.8</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>64</td>
+                  <td>26.5</td>
+                  <td>73</td>
+                  <td>20</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         {/* Jeans Size Chart */}
         <section className={styles.sizeChartSection}>
           <h2>Jeans Size Chart</h2>
@@ -94,84 +172,6 @@ export default function SizeGuidePage() {
                   <td>Out Seam</td>
                   <td>39"</td>
                   <td>40"</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* Shirts Size Chart */}
-        <section className={styles.sizeChartSection}>
-          <h2>Shirts Size Chart</h2>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Size</th>
-                  <th>Chest Width</th>
-                  <th>Sleeve Length</th>
-                  <th>Front Length</th>
-                  <th>Shoulder</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>S</td>
-                  <td>58.5</td>
-                  <td>26.5</td>
-                  <td>70.5</td>
-                  <td>17.9</td>
-                </tr>
-                <tr>
-                  <td>M</td>
-                  <td>61</td>
-                  <td>26.5</td>
-                  <td>71.5</td>
-                  <td>18.8</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>64</td>
-                  <td>26.5</td>
-                  <td>73</td>
-                  <td>20</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* T-Shirts Size Chart */}
-        <section className={styles.sizeChartSection}>
-          <h2>T-Shirts Size Chart</h2>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Size</th>
-                  <th>Length</th>
-                  <th>Chest</th>
-                  <th>Sleeve</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>M</td>
-                  <td>26"</td>
-                  <td>23"</td>
-                  <td>10"</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>27"</td>
-                  <td>24"</td>
-                  <td>10.5"</td>
-                </tr>
-                <tr>
-                  <td>XL</td>
-                  <td>28"</td>
-                  <td>25"</td>
-                  <td>10.5"</td>
                 </tr>
               </tbody>
             </table>
