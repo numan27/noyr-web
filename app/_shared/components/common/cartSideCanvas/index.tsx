@@ -6,6 +6,7 @@ import Link from "next/link";
 import { routeConstant } from "routes/constants";
 import { useCart } from "../../../context/CartContext";
 import styles from "./style.module.scss";
+import { trackInitiateCheckout } from "_shared/utils/metaPixel";
 
 export default function CartSideCanvas({
   isOpen,
@@ -45,6 +46,19 @@ export default function CartSideCanvas({
   // Prevent clicks inside the cart from closing it
   const handleCartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+  };
+
+  const handleCheckoutClick = () => {
+    // Track InitiateCheckout event
+    trackInitiateCheckout(
+      cartItems.map((item) => ({
+        id: item.id.toString(),
+        name: item.name,
+        price: parseFloat(item.price.replace(/[^0-9.]/g, "")),
+        quantity: item.quantity,
+      }))
+    );
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -136,7 +150,7 @@ export default function CartSideCanvas({
                   <Link
                     href="/checkout"
                     className={styles.checkoutButton}
-                    onClick={onClose}
+                    onClick={handleCheckoutClick}
                   >
                     Checkout
                   </Link>

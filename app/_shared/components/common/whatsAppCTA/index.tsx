@@ -4,9 +4,12 @@ import classNames from "classnames";
 import React from "react";
 import { MessageCircle } from "lucide-react";
 import styles from "./style.module.scss";
+import { trackContact } from "_shared/utils/metaPixel";
 
 const WhatsAppCTA = () => {
   const openWhatsApp = () => {
+    // Track contact event
+    trackContact();
     window.open("https://wa.me/96897676629", "_blank");
   };
 

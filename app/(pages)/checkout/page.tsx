@@ -12,6 +12,7 @@ import { createOrder } from "../../actions/order";
 import { StaticImageData } from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { trackPurchase } from "_shared/utils/metaPixel";
 
 type PaymentMethod =
   | "bank_transfer"
@@ -103,6 +104,18 @@ export default function CheckoutPage() {
       const result = await createOrder(orderData);
 
       if (result.success) {
+        // Track purchase event
+        trackPurchase({
+          currency: "PKR",
+          value: calculateSubtotal() + (calculateSubtotal() >= 10000 ? 0 : 300),
+          contents: cartItems.map((item) => ({
+            id: item.id.toString(),
+            name: item.name,
+            price: parseFloat(item.price.replace(/[^0-9.]/g, "")),
+            quantity: item.quantity,
+          })),
+        });
+
         // Clear cart
         clearCart();
 

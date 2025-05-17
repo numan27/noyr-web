@@ -7,10 +7,23 @@ import { routeConstant } from "routes/constants";
 import { useCart } from "../../_shared/context/CartContext";
 import classNames from "classnames";
 import styles from "./style.module.scss";
+import { trackInitiateCheckout } from "_shared/utils/metaPixel";
 
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, calculateSubtotal } =
     useCart();
+
+  const handleCheckoutClick = () => {
+    // Track InitiateCheckout event
+    trackInitiateCheckout(
+      cartItems.map((item) => ({
+        id: item.id.toString(),
+        name: item.name,
+        price: parseFloat(item.price.replace(/[^0-9.]/g, "")),
+        quantity: item.quantity,
+      }))
+    );
+  };
 
   return (
     <div
@@ -186,6 +199,7 @@ export default function CartPage() {
                     "w-full mt-6 py-3 rounded-md block text-center",
                     styles.checkoutButton
                   )}
+                  onClick={handleCheckoutClick}
                 >
                   Proceed to Checkout
                 </Link>

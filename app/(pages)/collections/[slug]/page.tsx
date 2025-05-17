@@ -9,6 +9,7 @@ import classNames from "classnames";
 import styles from "./style.module.scss";
 import CartSideCanvas from "components/common/cartSideCanvas";
 import { useCart } from "_shared/context/CartContext";
+import { trackViewContent, trackAddToCart } from "_shared/utils/metaPixel";
 
 type CartItem = {
   id: number | string;
@@ -66,10 +67,18 @@ export default function ProductDetail({ params }: PageProps) {
     return notFound();
   }
 
-  // Set initial selected image
+  // Set initial selected image and track view content
   React.useEffect(() => {
     setSelectedImage(product.image);
-  }, [product.image]);
+
+    // Track product view
+    trackViewContent({
+      id: product.id,
+      name: product.name,
+      price: parseFloat(product.price.replace(/[^0-9.]/g, "")),
+      category: product.category,
+    });
+  }, [product]);
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -88,6 +97,15 @@ export default function ProductDetail({ params }: PageProps) {
 
     addToCart(newItem);
     setIsCartOpen(true);
+
+    // Track add to cart event
+    trackAddToCart({
+      id: product.id,
+      name: product.name,
+      price: parseFloat(product.price.replace(/[^0-9.]/g, "")),
+      quantity: 1,
+      category: product.category,
+    });
   };
 
   return (
