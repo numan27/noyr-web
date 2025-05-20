@@ -73,6 +73,10 @@ const routeConstant = {
     path: "/size-guide",
     title: "Size Guide",
   },
+  maintenance: {
+    path: "/maintenance",
+    title: "Maintenance",
+  },
 };
 
 export { routeConstant };
