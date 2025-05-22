@@ -10,7 +10,7 @@ const WhatsAppCTA = () => {
   const openWhatsApp = () => {
     // Track contact event
     trackContact();
-    window.open("https://wa.me/96897676629", "_blank");
+    window.open("https://wa.me/923264688466", "_blank");
   };
 
   return (

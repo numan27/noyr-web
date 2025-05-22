@@ -22,8 +22,20 @@ interface OrderData {
 
 export async function createOrder(data: OrderData) {
   try {
-    // Generate a random order ID
-    const orderId = Math.random().toString(36).substring(2, 15);
+    // Generate a structured order ID: NOYR-YYYYMMDD-XXXX
+    const date = new Date()
+      .toLocaleString("en-US", {
+        timeZone: "Asia/Karachi",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/[^0-9]/g, "");
+
+    // Generate a 4-digit sequence number (0001-9999)
+    const sequence = Math.floor(Math.random() * 9000) + 1000;
+
+    const orderId = `NOYR-${date}-${sequence}`;
 
     // Get current time in Pakistan timezone (GMT+5)
     const pkTime = new Date().toLocaleString("en-US", {
@@ -65,7 +77,7 @@ export async function createOrder(data: OrderData) {
           .join("")}
       </ul>
       
-      <h3>Order Total: PKR ${(data.totalAmount + 400).toFixed(2)}</h3>
+      <h3>Order Total: PKR ${(data.totalAmount + 300).toFixed(2)}</h3>
     `;
 
     // Send email notification
@@ -90,7 +102,7 @@ export async function createOrder(data: OrderData) {
       success: true,
       order: {
         id: orderId,
-        totalAmount: data.totalAmount + 400,
+        totalAmount: data.totalAmount + 300,
         customerName: data.customerInfo.name,
         customerEmail: data.customerInfo.email,
         customerPhone: data.customerInfo.phone,

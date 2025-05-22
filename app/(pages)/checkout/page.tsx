@@ -58,7 +58,7 @@ export default function CheckoutPage() {
   };
 
   const handleWhatsAppShare = () => {
-    const whatsappNumber = "+96897676629";
+    const whatsappNumber = "+923264688466";
     window.open(`https://wa.me/${whatsappNumber}`, "_blank");
   };
 
